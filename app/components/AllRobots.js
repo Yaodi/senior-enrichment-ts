@@ -1,21 +1,17 @@
 import React, { Component } from "react";
-import Axios from "axios";
 import Navbar from "./Navbar";
+import { connect } from "react-redux";
+import { fetchRobots } from "../redux/robots";
 
 class AllRobots extends Component {
-  constructor() {
-    super();
-    this.state = { robots: [] };
-  }
-  async componentDidMount() {
-    const robots = await Axios.get("/api/robots");
-    this.setState({ robots: robots.data });
+  componentDidMount() {
+    this.props.fetchRobots();
   }
   render() {
     return (
       <div>
         <Navbar />
-        {this.state.robots.map(robot => (
+        {this.props.robots.map(robot => (
           <div>
             <h4>
               Robot Name: {robot.name} <img src={robot.imageUrl} />
@@ -28,7 +24,19 @@ class AllRobots extends Component {
   }
 }
 
+const mapStateToProps = state => {
+  return { robots: state.robots };
+};
+
+const mapDispatchToProps = dispatch => {
+  return { fetchRobots: () => dispatch(fetchRobots()) };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(AllRobots);
+
 // Currently, we're just exporting the component as-is. When we're ready to
 // hook it up to the redux store, we'll export the connected component by default:
 // export default connect(mapState)(AllRobots)
-export default AllRobots;

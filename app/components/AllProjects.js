@@ -16,7 +16,9 @@ class AllProjects extends Component {
           <div>
             <h4>Project Title: {project.title}</h4>
             <p>Project Deadline: {project.deadline}</p>
-            <p>Description: {project.description}</p>
+            <p>
+              <h4>Description:</h4> {project.description}
+            </p>
             <Link to={`/projects/${project.id}`}>View Project</Link>
           </div>
         ))}

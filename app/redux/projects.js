@@ -1,6 +1,9 @@
 import Axios from "axios";
 
-const initialState = { projectsList: [], currentProject: { robots: [] } };
+const initialState = {
+  projectsList: [],
+  currentProject: { robots: [], deadline: "" }
+};
 
 // ACTION TYPES
 const GOT_PROJECTS_FROM_SERVER = "GOT_PROJECTS_FROM_SERVER";

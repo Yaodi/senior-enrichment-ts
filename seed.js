@@ -5,7 +5,9 @@ const { db, Project, Robot } = require("./server/db");
 const robots = [
   {
     name: "Cody",
-    imageUrl: "/images/cody.jpg"
+    imageUrl: "/images/cody.jpg",
+    fuelType: "diesel",
+    fuelLevel: "44.5"
   },
   {
     name: "Ben",

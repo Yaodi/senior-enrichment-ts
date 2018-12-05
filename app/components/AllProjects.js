@@ -32,7 +32,7 @@ class AllProjects extends Component {
 }
 
 const mapStateToProps = state => {
-  return { projects: state.projects };
+  return { projects: state.projects.projectsList };
 };
 
 const mapDispatchToProps = dispatch => {

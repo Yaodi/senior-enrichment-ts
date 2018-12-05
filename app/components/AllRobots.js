@@ -33,7 +33,7 @@ class AllRobots extends Component {
 }
 
 const mapStateToProps = state => {
-  return { robots: state.robots };
+  return { robots: state.robots.robotsList };
 };
 
 const mapDispatchToProps = dispatch => {

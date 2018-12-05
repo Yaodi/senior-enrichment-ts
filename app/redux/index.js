@@ -1,12 +1,16 @@
-import { combineReducers } from 'redux'
+import { combineReducers } from "redux";
 
 // This reducer is just a stub. We should probably do something
 // with that combineReducers thing up there...
 
-const appReducer = () => {}
+// ACTION TYPES
+
+// ACTION FUNCTIONS
+
+const appReducer = () => {};
 // const appReducer = combineReducers({
-  // robots,
-  // projects,
+// robots,
+// projects,
 // })
 
-export default appReducer
+export default appReducer;

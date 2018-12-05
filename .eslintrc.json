@@ -1,4 +1,10 @@
 {
   "extends": "fullstack",
-  "root": true
+  "root": true,
+  "rules": {
+    "semi": [0, "always"],
+    "no-unused-vars": 0,
+    "react/no-unused-state": 0,
+    "quotes": "off"
+  }
 }

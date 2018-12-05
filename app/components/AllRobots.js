@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Navbar from "./Navbar";
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { fetchRobots } from "../redux/robots";
 
@@ -8,17 +9,24 @@ class AllRobots extends Component {
     this.props.fetchRobots();
   }
   render() {
-    return (
+    return this.props.robots.length ? (
       <div>
         <Navbar />
         {this.props.robots.map(robot => (
           <div>
+            <img src={robot.imageUrl} />
             <h4>
-              Robot Name: {robot.name} <img src={robot.imageUrl} />
+              Robot Name: {robot.name}
+              <br />
+              <Link to={`/robots/${robot.id}`}>View Robot</Link>
             </h4>
           </div>
         ))}
-        )
+      </div>
+    ) : (
+      <div>
+        <Navbar />
+        <h1>ERROR NO ROBOTS FOUND</h1>
       </div>
     );
   }

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Navbar from "./Navbar";
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { fetchProjects } from "../redux/projects";
 
@@ -8,16 +9,23 @@ class AllProjects extends Component {
     this.props.fetchProjects();
   }
   render() {
-    return (
+    return this.props.projects.length ? (
       <div>
         <Navbar />
         {this.props.projects.map(project => (
           <div>
-            <h4>Project Name: {project.name}</h4>
+            <h4>Project Title: {project.title}</h4>
             <p>Project Deadline: {project.deadline}</p>
+            <p>Description: {project.description}</p>
+            <Link to={`/projects/${project.id}`}>View Project</Link>
           </div>
         ))}
         )
+      </div>
+    ) : (
+      <div>
+        <Navbar />
+        <h1>ERROR NO PROJECTS FOUND</h1>
       </div>
     );
   }

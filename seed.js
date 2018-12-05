@@ -75,64 +75,65 @@ const robots = [
   {
     name: "Odie",
     imageUrl: "/images/odie.jpg"
-  }
+  },
+  { name: "Definitely Not Odie" }
 ];
 
 const projects = [
   {
-    name: "Project Cody",
+    title: "Project Cody",
     robotId: 1
   },
   {
-    name: "Project Ben"
+    title: "Project Ben"
   },
   {
-    name: "Project Star"
+    title: "Project Star"
   },
   {
-    name: "Project Batman"
+    title: "Project Batman"
   },
   {
-    name: "Project Elliott"
+    title: "Project Elliott"
   },
   {
-    name: "Project Fira"
+    title: "Project Fira"
   },
   {
-    name: "Project Henry"
+    title: "Project Henry"
   },
   {
-    name: "Project Marcy"
+    title: "Project Marcy"
   },
   {
-    name: "Project Milton"
+    title: "Project Milton"
   },
   {
-    name: "Project Murphy"
+    title: "Project Murphy"
   },
   {
-    name: "Project Raffi"
+    title: "Project Raffi"
   },
   {
-    name: "Project Tulsi"
+    title: "Project Tulsi"
   },
   {
-    name: "Project Pork Chop"
+    title: "Project Pork Chop"
   },
   {
-    name: "Project Ribs"
+    title: "Project Ribs"
   },
   {
-    name: "Project Stacey"
+    title: "Project Stacey"
   },
   {
-    name: "Project JD"
+    title: "Project JD"
   },
   {
-    name: "Project BenBen"
+    title: "Project BenBen"
   },
   {
-    name: "Project Odie"
+    title: "Project Odie"
   }
 ];
 const seed = async () => {

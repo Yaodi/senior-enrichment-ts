@@ -5,6 +5,8 @@ import HomePage from "./HomePage";
 import AllProjects from "./AllProjects";
 import { Provider } from "react-redux";
 import store from "../store";
+import SingleRobot from "./SingleRobot";
+import SingleProject from "./SingleProject";
 
 export default class Root extends React.Component {
   componentDidMount() {
@@ -19,6 +21,8 @@ export default class Root extends React.Component {
             <Route exact path="/" component={HomePage} />
             <Route exact path="/robots" component={AllRobots} />
             <Route exact path="/projects" component={AllProjects} />
+            <Route path="/robots/:robotId" component={SingleRobot} />
+            <Route path="/projects/:projectId" component={SingleProject} />
           </div>
         </Router>
       </Provider>

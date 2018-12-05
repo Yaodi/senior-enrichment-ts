@@ -10,8 +10,16 @@ const Robot = db.define(
       allowNull: false,
       validate: { notEmpty: true }
     },
-    fuelType: { type: Sequelize.STRING, defaultValue: "electric" },
-    fuelLevel: { type: Sequelize.DECIMAL, defaultValue: 100 },
+    fuelType: {
+      type: Sequelize.STRING,
+      defaultValue: "electric",
+      validate: { isIn: [["diesel", "gas", "electric"]] }
+    },
+    fuelLevel: {
+      type: Sequelize.DECIMAL,
+      defaultValue: 100,
+      validate: { min: 0, max: 100 }
+    },
     imageUrl: { type: Sequelize.STRING, defaultValue: "/images/odie.jpg" }
   }
   // {

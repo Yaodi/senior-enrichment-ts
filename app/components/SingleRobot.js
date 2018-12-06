@@ -1,16 +1,19 @@
 import React, { Component } from "react";
 import Navbar from "./Navbar";
-import { fetchRobot, updateRobot } from "../redux/robots";
+import { fetchRobot, updateRobot, updateRelation } from "../redux/robots";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import RobotUpdateForm from "./RobotUpdateForm";
 
 class SingleRobot extends Component {
+  constructor() {
+    super();
+    this.state = { refreshes: 0 };
+  }
   componentDidMount() {
     this.props.fetchRobot(this.props.match.params.robotId);
   }
   render() {
-    // this.props.robot.projects = [];
     return (
       <div>
         <Navbar />
@@ -39,6 +42,18 @@ class SingleRobot extends Component {
             this.props.robot.projects.map(project => (
               <li>
                 <Link to={`/projects/${project.id}`}>{project.title}</Link>
+                {"  "}
+                <button
+                  type="button"
+                  onClick={event => {
+                    event.preventDefault();
+                    this.props.updateRelation(this.props.robot.id, project.id);
+                    this.props.history.push();
+                  }}
+                >
+                  {" "}
+                  Remove
+                </button>
               </li>
             ))
           ) : (
@@ -59,7 +74,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     fetchRobot: id => dispatch(fetchRobot(id)),
-    updateRobot: (id, fieldToUpdate) => dispatch(updateRobot(id, fieldToUpdate))
+    updateRelation: (robotId, projectId) =>
+      dispatch(updateRelation(robotId, projectId))
   };
 };
 

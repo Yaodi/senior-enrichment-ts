@@ -57,6 +57,15 @@ export const deleteRobot = id => {
     dispatch(gotRobotsFromServer(data));
   };
 };
+export const updateRelation = (robotId, projectId) => {
+  return async function(dispatch) {
+    const { data } = await Axios.put("/api/relations", {
+      robotId,
+      projectId
+    });
+    dispatch(gotRobotFromServer(data));
+  };
+};
 
 export const updateRobot = (id, fieldToUpdate) => {
   return async function(dispatch) {

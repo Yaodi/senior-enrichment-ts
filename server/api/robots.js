@@ -48,6 +48,7 @@ router.put("/:id", async (req, res, next) => {
   try {
     const [numberOfAffectedRows, affectedRows] = await Robot.update(req.body, {
       where: { id: req.params.id },
+      include: { all: true },
       // RETURNING TRUE GIVES US OUR UPDATED ROW BACK
       returning: true
     });

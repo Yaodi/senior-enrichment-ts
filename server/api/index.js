@@ -22,6 +22,18 @@ const { db, Project, Robot } = require("../db/index");
 router.use("/robots", require("./robots"));
 router.use("/projects", require("./projects"));
 
+router.put("/relations", async (req, res, next) => {
+  try {
+    const robotInstance = await Robot.findById(req.body.robotId, {
+      include: { all: true }
+    });
+    const projectInstance = await Project.findById(req.body.projectId);
+    await robotInstance.removeProject(projectInstance);
+  } catch (err) {
+    next(err);
+  }
+});
+
 router.use((req, res, next) => {
   const err = new Error("API route not found!");
   err.status = 404;

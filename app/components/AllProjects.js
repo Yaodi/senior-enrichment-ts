@@ -15,7 +15,6 @@ class AllProjects extends Component {
         {this.props.projects.map(project => (
           <div>
             <h4>Project Title: {project.title}</h4>
-            <p>Project Deadline: {project.deadline}</p>
             <p>
               <h4>Description:</h4> {project.description}
             </p>

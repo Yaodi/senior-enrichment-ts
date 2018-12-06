@@ -1,6 +1,4 @@
 import { combineReducers } from "redux";
-import projects from "./projects";
-import Axios from "axios";
 import { robotsReducer, fetchRobots } from "./robots";
 import { projectsReducer } from "./projects";
 

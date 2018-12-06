@@ -2,7 +2,10 @@ const router = require("express").Router();
 const { db, Project, Robot } = require("../db/index");
 
 router.get("/", async (req, res, next) => {
-  const projects = await Project.findAll({ include: { all: true } });
+  const projects = await Project.findAll({
+    include: { all: true },
+    order: [["createdAt", "DESC"]]
+  });
   const robots = await Robot.findAll();
   projects[0].addRobots(robots.slice(5));
   res.json(projects);

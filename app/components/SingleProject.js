@@ -5,6 +5,10 @@ import { fetchProject } from "../redux/projects";
 import { Link } from "react-router-dom";
 
 class SingleProject extends Component {
+  constructor() {
+    super();
+    this.state = { show: false, button: true };
+  }
   componentDidMount() {
     this.props.fetchProject(this.props.match.params.projectId);
   }
@@ -18,29 +22,50 @@ class SingleProject extends Component {
       deadline = `${AMERICA.join("/")} at ${arr[1].split(".")[0]}`;
     }
     return (
-      <div>
+      <React.Fragment>
         <Navbar />
-        <h1> Title: {this.props.project.title}</h1>
+        <h1> {this.props.project.title}</h1>
         <h3> Deadline: {deadline}</h3>
-        <h3> Robots Assigned: </h3>
-        <p>
-          <h3>Description: </h3>
-          {this.props.project.description}
-        </p>
+        <h3>Description: </h3>
+        {this.props.project.description}
         <h3>Priority Level: {this.props.project.priority}</h3>
+
         <h3>Robots Assigned:</h3>
         <ul>
-          {this.props.project.robots.length ? (
-            this.props.project.robots.map(robot => (
-              <li>
-                <Link to={`/robots/${robot.id}`}>{robot.name}</Link>
-              </li>
-            ))
-          ) : (
+          {!this.props.project.robots.length ? (
             <h1>No robots assigned to this project, yikes!</h1>
+          ) : this.state.show ? (
+            <React.Fragment>
+              <button
+                onClick={() => {
+                  this.setState({ show: !this.state.show });
+                }}
+              >
+                Collapse
+              </button>
+              <span className="allRobots">
+                {this.props.project.robots.map(robot => (
+                  <span className="robot">
+                    <Link className="linkText" to={`/robots/${robot.id}`}>
+                      {robot.name}
+                      <br />
+                      <img src={robot.imageUrl} />
+                    </Link>
+                  </span>
+                ))}
+              </span>
+            </React.Fragment>
+          ) : (
+            <button
+              onClick={() => {
+                this.setState({ show: !this.state.show });
+              }}
+            >
+              Expand
+            </button>
           )}
         </ul>
-      </div>
+      </React.Fragment>
     );
   }
 }

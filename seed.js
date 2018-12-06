@@ -12,7 +12,7 @@ const robots = [
   {
     name: "Ben",
     imageUrl: "/images/ben.jpg",
-    projectId: 3
+    Id: 3
   },
   {
     name: "Star",
@@ -83,59 +83,59 @@ const robots = [
 
 const projects = [
   {
-    title: "Project Cody",
+    title: " Cody",
     robotId: 1
   },
   {
-    title: "Project Ben"
+    title: " Ben"
   },
   {
-    title: "Project Star"
+    title: " Star"
   },
   {
-    title: "Project Batman"
+    title: " Batman"
   },
   {
-    title: "Project Elliott"
+    title: " Elliott"
   },
   {
-    title: "Project Fira"
+    title: " Fira"
   },
   {
-    title: "Project Henry"
+    title: " Henry"
   },
   {
-    title: "Project Marcy"
+    title: " Marcy"
   },
   {
-    title: "Project Milton"
+    title: " Milton"
   },
   {
-    title: "Project Murphy"
+    title: " Murphy"
   },
   {
-    title: "Project Raffi"
+    title: " Raffi"
   },
   {
-    title: "Project Tulsi"
+    title: " Tulsi"
   },
   {
-    title: "Project Pork Chop"
+    title: " Pork Chop"
   },
   {
-    title: "Project Ribs"
+    title: " Ribs"
   },
   {
-    title: "Project Stacey"
+    title: " Stacey"
   },
   {
-    title: "Project JD"
+    title: " JD"
   },
   {
-    title: "Project BenBen"
+    title: " BenBen"
   },
   {
-    title: "Project Odie"
+    title: " Odie"
   }
 ];
 const seed = async () => {

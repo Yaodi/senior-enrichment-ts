@@ -12,15 +12,28 @@ class AllProjects extends Component {
     return this.props.projects.length ? (
       <div>
         <Navbar />
-        {this.props.projects.map(project => (
-          <div>
-            <h4>Project Title: {project.title}</h4>
-            <p>
-              <h4>Description:</h4> {project.description}
-            </p>
-            <Link to={`/projects/${project.id}`}>View Project</Link>
-          </div>
-        ))}
+        <div className="projectList">
+          {this.props.projects.map(project => {
+            let deadline = project.deadline;
+            let arr = deadline.split("T");
+            arr[0] = arr[0].split("-");
+            let AMERICA = [arr[0][1], arr[0][2], arr[0][0]];
+            deadline = AMERICA.join("/");
+
+            return (
+              <span className="project">
+                <Link
+                  style={{ textDecorationLine: "none", color: "black" }}
+                  to={`/projects/${project.id}`}
+                >
+                  <h2>{project.title}</h2>
+                  <h4>Deadline: {deadline}</h4>
+                  <h4>Description</h4> {project.description}
+                </Link>
+              </span>
+            );
+          })}
+        </div>
         )
       </div>
     ) : (

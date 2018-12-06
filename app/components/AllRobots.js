@@ -10,19 +10,20 @@ class AllRobots extends Component {
   }
   render() {
     return this.props.robots.length ? (
-      <div>
+      <React.Fragment>
         <Navbar />
-        {this.props.robots.map(robot => (
-          <div>
-            <img src={robot.imageUrl} />
-            <h4>
-              Robot Name: {robot.name}
-              <br />
-              <Link to={`/robots/${robot.id}`}>View Robot</Link>
-            </h4>
-          </div>
-        ))}
-      </div>
+        <div className="allRobots">
+          {this.props.robots.map(robot => (
+            <span className="robot">
+              <Link className="linkText" to={`/robots/${robot.id}`}>
+                {robot.name}
+                <br />
+                <img src={robot.imageUrl} />
+              </Link>
+            </span>
+          ))}
+        </div>
+      </React.Fragment>
     ) : (
       <div>
         <Navbar />

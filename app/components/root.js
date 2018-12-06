@@ -19,7 +19,7 @@ export default class Root extends React.Component {
     return (
       <Provider store={store}>
         <Router>
-          <div>
+          <React.Fragment>
             <Route exact path="/" component={HomePage} />
             <Route exact path="/robots" component={AllRobots} />
             <Route exact path="/projects" component={AllProjects} />
@@ -27,7 +27,7 @@ export default class Root extends React.Component {
             <Route exact path="/newRobot" component={NewRobot} />
             <Route path="/robots/:robotId" component={SingleRobot} />
             <Route path="/projects/:projectId" component={SingleProject} />
-          </div>
+          </React.Fragment>
         </Router>
       </Provider>
     );

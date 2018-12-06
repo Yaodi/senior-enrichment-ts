@@ -5,6 +5,10 @@
     "semi": [0, "always"],
     "no-unused-vars": 0,
     "react/no-unused-state": 0,
-    "quotes": "off"
+    "quotes": "off",
+    "react/jsx-key": "off",
+    "react/button-has-type": "off",
+    "react/no-access-state-in-setstate": "off",
+    "no-nested-ternary": "off"
   }
 }

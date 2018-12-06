@@ -1,4 +1,6 @@
 const router = require("express").Router();
+const path = require("path");
+
 const { db, Project, Robot } = require("../db/index");
 
 router.get("/", async (req, res, next) => {
@@ -57,6 +59,19 @@ router.put("/:id", async (req, res, next) => {
     next(err);
   }
 });
+// router.put("/relations", async (req, res, next) => {
+//   try {
+//     console.log(req.body.robotId);
+//     const robotInstance = await Robot.findById(req.body.robotId, {
+//       include: { all: true }
+//     });
+//     const projectInstance = await Project.findById(req.body.projectId);
+//     await robotInstance.removeProject(projectInstance);
+//     res.json(robotInstance);
+//   } catch (err) {
+//     next(err);
+//   }
+// });
 
 router.use((req, res, next) => {
   const err = new Error("Robot route not found!");

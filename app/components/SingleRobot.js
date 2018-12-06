@@ -3,6 +3,7 @@ import Navbar from "./Navbar";
 import { fetchRobot, updateRobot, updateRelation } from "../redux/robots";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import { RefreshLocation } from "react-router";
 import RobotUpdateForm from "./RobotUpdateForm";
 
 class SingleRobot extends Component {
@@ -48,7 +49,7 @@ class SingleRobot extends Component {
                   onClick={event => {
                     event.preventDefault();
                     this.props.updateRelation(this.props.robot.id, project.id);
-                    this.props.history.push();
+                    this.props.history.push("/updated");
                   }}
                 >
                   {" "}

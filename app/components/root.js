@@ -10,6 +10,7 @@ import SingleProject from "./SingleProject";
 import NewProject from "./NewProject";
 import NewRobot from "./NewRobot";
 import RobotUpdateForm from "./RobotUpdateForm";
+import Updated from "./Updated";
 
 export default class Root extends React.Component {
   componentDidMount() {
@@ -37,6 +38,7 @@ export default class Root extends React.Component {
               path="/robots/:robotId/update"
               component={RobotUpdateForm}
             />
+            <Route exact path="/updated" component={Updated} />
           </React.Fragment>
         </Router>
       </Provider>

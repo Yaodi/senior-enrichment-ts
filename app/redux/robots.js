@@ -2,7 +2,7 @@ import Axios from "axios";
 
 const initialState = {
   robotsList: [],
-  currentRobot: { fuelType: "", projects: [], name: "intialize" }
+  currentRobot: { fuelType: "", projects: [], name: "" }
 };
 
 // ACTION TYPES

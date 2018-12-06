@@ -29,6 +29,7 @@ router.put("/relations", async (req, res, next) => {
     });
     const projectInstance = await Project.findById(req.body.projectId);
     await robotInstance.removeProject(projectInstance);
+    res.json(robotInstance);
   } catch (err) {
     next(err);
   }

@@ -30,10 +30,15 @@ router.post("/", async (req, res, next) => {
     next(err);
   }
 });
-router.delete("/", (req, res, next) => {
+router.delete("/:robotId", async (req, res, next) => {
   try {
-    console.log("We have our object here!!!", req.body);
-    res.send("haha");
+    const filler = await Robot.destroy({ where: { id: req.params.robotId } });
+
+    const robots = await Robot.findAll({
+      include: { all: true },
+      order: [["createdAt", "DESC"]]
+    });
+    res.json(robots);
   } catch (err) {
     next(err);
   }

@@ -15,15 +15,14 @@ class AllRobots extends Component {
         <div className="allRobots">
           {this.props.robots.map(robot => (
             <React.Fragment>
-              {/* <button
+              <button
                 type="salami"
                 onClick={() => {
-                  console.log("safe");
-                  // this.props.deleteRobot(robot);
+                  this.props.deleteRobot(robot.id);
                 }}
               >
                 x
-              </button> */}
+              </button>
               <span className="robot">
                 <Link className="linkText" to={`/robots/${robot.id}`}>
                   {" "}
@@ -52,7 +51,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     fetchRobots: () => dispatch(fetchRobots()),
-    deleteRobot: obj => dispatch(deleteRobot(obj))
+    deleteRobot: id => dispatch(deleteRobot(id))
   };
 };
 

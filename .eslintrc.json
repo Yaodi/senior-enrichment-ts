@@ -10,6 +10,7 @@
     "react/button-has-type": "off",
     "react/no-access-state-in-setstate": "off",
     "no-nested-ternary": "off",
-    "key-spacing": "off"
+    "key-spacing": "off",
+    "react/prefer-stateless-function": "off"
   }
 }

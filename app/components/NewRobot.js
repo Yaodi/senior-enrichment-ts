@@ -30,7 +30,6 @@ class NewRobot extends Component {
               value={this.state.name}
               onChange={event => {
                 event.preventDefault();
-                console.log(event.target.value);
                 return this.setState({ name: event.target.value });
               }}
             />

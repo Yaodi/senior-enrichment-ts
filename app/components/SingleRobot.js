@@ -3,6 +3,7 @@ import Navbar from "./Navbar";
 import { fetchRobot, updateRobot } from "../redux/robots";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import RobotUpdateForm from "./RobotUpdateForm";
 
 class SingleRobot extends Component {
   componentDidMount() {
@@ -14,11 +15,11 @@ class SingleRobot extends Component {
       <div>
         <Navbar />
         <button
-          onClick={() =>
-            this.props.updateRobot(this.props.robot.id, {
-              name: "Changed"
-            })
-          }
+          onClick={() => {
+            this.props.history.push(
+              `/robots/${this.props.match.params.robotId}/update`
+            );
+          }}
         >
           Update
         </button>
@@ -51,8 +52,7 @@ class SingleRobot extends Component {
 
 const mapStateToProps = state => {
   return {
-    robot: state.robots.currentRobot,
-    robotsList: state.robots.robotsList
+    robot: state.robots.currentRobot
   };
 };
 

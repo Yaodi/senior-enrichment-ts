@@ -15,15 +15,15 @@ class AllRobots extends Component {
         <div className="allRobots">
           {this.props.robots.map(robot => (
             <React.Fragment>
-              <button
-                type="salami"
-                onClick={() => {
-                  this.props.deleteRobot(robot.id);
-                }}
-              >
-                x
-              </button>
               <span className="robot">
+                <button
+                  type="salami"
+                  onClick={() => {
+                    this.props.deleteRobot(robot.id);
+                  }}
+                >
+                  x
+                </button>
                 <Link className="linkText" to={`/robots/${robot.id}`}>
                   {" "}
                   {robot.name}

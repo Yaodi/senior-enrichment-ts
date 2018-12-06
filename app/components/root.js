@@ -9,6 +9,7 @@ import SingleRobot from "./SingleRobot";
 import SingleProject from "./SingleProject";
 import NewProject from "./NewProject";
 import NewRobot from "./NewRobot";
+import RobotUpdateForm from "./RobotUpdateForm";
 
 export default class Root extends React.Component {
   componentDidMount() {
@@ -25,8 +26,17 @@ export default class Root extends React.Component {
             <Route exact path="/projects" component={AllProjects} />
             <Route exact path="/newProject" component={NewProject} />
             <Route exact path="/newRobot" component={NewRobot} />
-            <Route path="/robots/:robotId" component={SingleRobot} />
-            <Route path="/projects/:projectId" component={SingleProject} />
+            <Route exact path="/robots/:robotId" component={SingleRobot} />
+            <Route
+              exact
+              path="/projects/:projectId"
+              component={SingleProject}
+            />
+            <Route
+              exact
+              path="/robots/:robotId/update"
+              component={RobotUpdateForm}
+            />
           </React.Fragment>
         </Router>
       </Provider>

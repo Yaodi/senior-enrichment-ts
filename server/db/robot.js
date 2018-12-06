@@ -20,7 +20,7 @@ const Robot = db.define(
       defaultValue: 100,
       validate: { min: 0, max: 100 }
     },
-    imageUrl: { type: Sequelize.STRING, defaultValue: "/images/odie.jpg" }
+    imageUrl: { type: Sequelize.STRING, defaultValue: "/images/default.png" }
   }
   // {
   //   defaultScope: {

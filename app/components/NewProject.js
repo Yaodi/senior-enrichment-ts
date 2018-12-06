@@ -29,7 +29,6 @@ class NewProject extends Component {
               value={this.state.title}
               onChange={event => {
                 event.preventDefault();
-                console.log(event.target.value);
                 return this.setState({ title: event.target.value });
               }}
             />

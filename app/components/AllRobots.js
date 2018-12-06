@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Navbar from "./Navbar";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { fetchRobots } from "../redux/robots";
+import { fetchRobots, deleteRobot } from "../redux/robots";
 
 class AllRobots extends Component {
   componentDidMount() {
@@ -14,13 +14,25 @@ class AllRobots extends Component {
         <Navbar />
         <div className="allRobots">
           {this.props.robots.map(robot => (
-            <span className="robot">
-              <Link className="linkText" to={`/robots/${robot.id}`}>
-                {robot.name}
-                <br />
-                <img src={robot.imageUrl} />
-              </Link>
-            </span>
+            <React.Fragment>
+              {/* <button
+                type="salami"
+                onClick={() => {
+                  console.log("safe");
+                  // this.props.deleteRobot(robot);
+                }}
+              >
+                x
+              </button> */}
+              <span className="robot">
+                <Link className="linkText" to={`/robots/${robot.id}`}>
+                  {" "}
+                  {robot.name}
+                  <br />
+                  <img src={robot.imageUrl} />
+                </Link>
+              </span>
+            </React.Fragment>
           ))}
         </div>
       </React.Fragment>
@@ -38,7 +50,10 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => {
-  return { fetchRobots: () => dispatch(fetchRobots()) };
+  return {
+    fetchRobots: () => dispatch(fetchRobots()),
+    deleteRobot: obj => dispatch(deleteRobot(obj))
+  };
 };
 
 export default connect(

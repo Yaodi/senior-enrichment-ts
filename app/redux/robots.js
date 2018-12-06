@@ -2,14 +2,14 @@ import Axios from "axios";
 
 const initialState = {
   robotsList: [],
-  currentRobot: { fuelType: "", projects: [] }
+  currentRobot: { fuelType: "", projects: [], name: "intialize" }
 };
 
 // ACTION TYPES
 const GOT_ROBOTS_FROM_SERVER = "GOT_ROBOTS_FROM_SERVER";
 const GOT_ROBOT_FROM_SERVER = "GOT_ROBOT_FROM_SERVER";
-const ADDED_NEW_ROBOT = "ADDED_NEW_ROBOT";
-const DELETED_ROBOT_FROM_SERVER = "DELETED_ROBOT_FROM_SERVER";
+const GOT_NEW_ROBOT_FROM_SERVER = "GOT_NEW_ROBOT_FROM_SERVER";
+const GOT_UPDATED_ROBOT_FROM_SERVER = "GOT_UPDATED_ROBOT_FROM_SERVER";
 
 // ACTION CREATORS
 const gotRobotsFromServer = data => ({
@@ -23,11 +23,16 @@ const gotRobotFromServer = data => ({
 });
 
 const addedNewRobot = data => ({
-  type: ADDED_NEW_ROBOT,
+  type: GOT_NEW_ROBOT_FROM_SERVER,
   data
 });
 
-// THUNK!
+const updatedRobot = data => ({
+  type: GOT_UPDATED_ROBOT_FROM_SERVER,
+  data
+});
+
+// THUNKS!
 export const fetchRobots = () => {
   return async function(dispatch) {
     const { data } = await Axios.get("/api/robots");
@@ -40,9 +45,9 @@ export const fetchRobot = id => {
     dispatch(gotRobotFromServer(data));
   };
 };
-export const addRobot = obj => {
+export const addRobot = newRobotObj => {
   return async function(dispatch) {
-    const { data } = await Axios.post("/api/robots", obj);
+    const { data } = await Axios.post("/api/robots", newRobotObj);
     dispatch(addedNewRobot(data));
   };
 };
@@ -50,6 +55,13 @@ export const deleteRobot = id => {
   return async function(dispatch) {
     const { data } = await Axios.delete(`/api/robots/${id}`);
     dispatch(gotRobotsFromServer(data));
+  };
+};
+
+export const updateRobot = (id, fieldToUpdate) => {
+  return async function(dispatch) {
+    const { data } = await Axios.put(`/api/robots/${id}`, fieldToUpdate);
+    dispatch(updatedRobot(data));
   };
 };
 
@@ -61,8 +73,18 @@ export const robotsReducer = (state = initialState, action) => {
       return { ...state, robotsList: action.data };
     case GOT_ROBOT_FROM_SERVER:
       return { ...state, currentRobot: action.data };
-    case ADDED_NEW_ROBOT:
+    case GOT_NEW_ROBOT_FROM_SERVER:
       return { ...state, robotsList: [...state.robotsList, action.data] };
+    case GOT_UPDATED_ROBOT_FROM_SERVER:
+      return {
+        ...state,
+        robotsList: [
+          ...state.robotsList.map(obj => {
+            if (obj.id === action.data.id) return action.data;
+            return obj;
+          })
+        ]
+      };
     default:
       return state;
   }

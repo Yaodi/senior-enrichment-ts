@@ -16,7 +16,7 @@ router.get("/", async (req, res, next) => {
 });
 router.get("/:id", async (req, res, next) => {
   try {
-    const project = await Project.findById(req.params.projectId, {
+    const project = await Project.findById(req.params.id, {
       include: { all: true }
     });
     res.json(project);

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Navbar from "./Navbar";
-import { fetchRobot } from "../redux/robots";
+import { fetchRobot, updateRobot } from "../redux/robots";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
@@ -13,6 +13,15 @@ class SingleRobot extends Component {
     return (
       <div>
         <Navbar />
+        <button
+          onClick={() =>
+            this.props.updateRobot(this.props.robot.id, {
+              name: "Changed"
+            })
+          }
+        >
+          Update
+        </button>
         <h1> Name: {this.props.robot.name} </h1>
         <img src={this.props.robot.imageUrl} />
         <h3>
@@ -41,11 +50,17 @@ class SingleRobot extends Component {
 }
 
 const mapStateToProps = state => {
-  return { robot: state.robots.currentRobot };
+  return {
+    robot: state.robots.currentRobot,
+    robotsList: state.robots.robotsList
+  };
 };
 
 const mapDispatchToProps = dispatch => {
-  return { fetchRobot: id => dispatch(fetchRobot(id)) };
+  return {
+    fetchRobot: id => dispatch(fetchRobot(id)),
+    updateRobot: (id, fieldToUpdate) => dispatch(updateRobot(id, fieldToUpdate))
+  };
 };
 
 export default connect(

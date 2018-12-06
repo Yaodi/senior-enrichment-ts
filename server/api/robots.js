@@ -14,7 +14,7 @@ router.get("/", async (req, res, next) => {
 });
 router.get("/:id", async (req, res, next) => {
   try {
-    const robot = await Robot.findById(req.params.robotId, {
+    const robot = await Robot.findById(req.params.id, {
       include: { all: true }
     });
     res.json(robot);
@@ -43,6 +43,20 @@ router.delete("/:id", async (req, res, next) => {
     next(err);
   }
 });
+
+router.put("/:id", async (req, res, next) => {
+  try {
+    const [numberOfAffectedRows, affectedRows] = await Robot.update(req.body, {
+      where: { id: req.params.id },
+      // RETURNING TRUE GIVES US OUR UPDATED ROW BACK
+      returning: true
+    });
+    res.json(affectedRows[0]);
+  } catch (err) {
+    next(err);
+  }
+});
+
 router.use((req, res, next) => {
   const err = new Error("Robot route not found!");
   err.status = 404;

@@ -39,9 +39,14 @@ export const fetchProject = id => {
 };
 export const addProject = obj => {
   return async function(dispatch) {
-    console.log("ADD PROJECT THUNK >>>>", obj);
     const { data } = await Axios.post("/api/projects", obj);
     dispatch(addedNewProject(data));
+  };
+};
+export const deleteProject = id => {
+  return async function(dispatch) {
+    const { data } = await Axios.delete(`/api/projects/${id}`);
+    dispatch(gotProjectsFromServer(data));
   };
 };
 

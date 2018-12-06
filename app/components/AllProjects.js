@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Navbar from "./Navbar";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { fetchProjects } from "../redux/projects";
+import { fetchProjects, deleteProject } from "../redux/projects";
 
 class AllProjects extends Component {
   componentDidMount() {
@@ -22,6 +22,12 @@ class AllProjects extends Component {
 
             return (
               <span className="project">
+                <button
+                  type="button"
+                  onClick={() => this.props.deleteProject(project.id)}
+                >
+                  x
+                </button>
                 <Link
                   style={{ textDecorationLine: "none", color: "black" }}
                   to={`/projects/${project.id}`}
@@ -50,7 +56,10 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => {
-  return { fetchProjects: () => dispatch(fetchProjects()) };
+  return {
+    fetchProjects: () => dispatch(fetchProjects()),
+    deleteProject: id => dispatch(deleteProject(id))
+  };
 };
 
 export default connect(

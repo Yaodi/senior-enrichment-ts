@@ -14,7 +14,7 @@ router.get("/", async (req, res, next) => {
     next(err);
   }
 });
-router.get("/:projectId", async (req, res, next) => {
+router.get("/:id", async (req, res, next) => {
   try {
     const project = await Project.findById(req.params.projectId, {
       include: { all: true }
@@ -32,6 +32,21 @@ router.post("/", async (req, res, next) => {
     next(err);
   }
 });
+
+router.delete("/:id", async (req, res, next) => {
+  try {
+    await Project.destroy({ where: { id: req.params.id } });
+
+    const projects = await Project.findAll({
+      include: { all: true },
+      order: [["createdAt", "DESC"]]
+    });
+    res.json(projects);
+  } catch (err) {
+    next(err);
+  }
+});
+
 router.use((req, res, next) => {
   const err = new Error("Project route not found!");
   err.status = 404;

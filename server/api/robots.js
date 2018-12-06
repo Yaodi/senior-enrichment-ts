@@ -12,7 +12,7 @@ router.get("/", async (req, res, next) => {
     next(err);
   }
 });
-router.get("/:robotId", async (req, res, next) => {
+router.get("/:id", async (req, res, next) => {
   try {
     const robot = await Robot.findById(req.params.robotId, {
       include: { all: true }
@@ -30,9 +30,9 @@ router.post("/", async (req, res, next) => {
     next(err);
   }
 });
-router.delete("/:robotId", async (req, res, next) => {
+router.delete("/:id", async (req, res, next) => {
   try {
-    const filler = await Robot.destroy({ where: { id: req.params.robotId } });
+    await Robot.destroy({ where: { id: req.params.id } });
 
     const robots = await Robot.findAll({
       include: { all: true },

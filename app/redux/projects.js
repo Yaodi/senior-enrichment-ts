@@ -8,6 +8,7 @@ const initialState = {
 // ACTION TYPES
 const GOT_PROJECTS_FROM_SERVER = "GOT_PROJECTS_FROM_SERVER";
 const GOT_PROJECT_FROM_SERVER = "GOT_PROJECT_FROM_SERVER";
+const ADDED_NEW_PROJECT = "ADDED_NEW_PROJECT";
 
 // ACTION CREATORS
 const gotProjectsFromServer = data => ({
@@ -16,6 +17,10 @@ const gotProjectsFromServer = data => ({
 });
 const gotProjectFromServer = data => ({
   type: GOT_PROJECT_FROM_SERVER,
+  data
+});
+const addedNewProject = data => ({
+  type: ADDED_NEW_PROJECT,
   data
 });
 
@@ -32,14 +37,22 @@ export const fetchProject = id => {
     dispatch(gotProjectFromServer(data));
   };
 };
+export const addProject = obj => {
+  return async function(dispatch) {
+    console.log("ADD PROJECT THUNK >>>>", obj);
+    const { data } = await Axios.post("/api/projects", obj);
+    dispatch(addedNewProject(data));
+  };
+};
 
 export const projectsReducer = (state = initialState, action) => {
   switch (action.type) {
     case GOT_PROJECTS_FROM_SERVER:
       return { ...state, projectsList: action.data };
     case GOT_PROJECT_FROM_SERVER:
-      console.log("ACTION DATA", action.data);
       return { ...state, currentProject: action.data };
+    case ADDED_NEW_PROJECT:
+      return { ...state, projectsList: [...state.projectsList, action.data] };
     default:
       return state;
   }

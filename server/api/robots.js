@@ -11,5 +11,9 @@ router.get("/:robotId", async (req, res, next) => {
   });
   res.json(robot);
 });
+router.post("/", async (req, res, next) => {
+  const newRobot = await Robot.create(req.body);
+  res.json(newRobot);
+});
 
 module.exports = router;

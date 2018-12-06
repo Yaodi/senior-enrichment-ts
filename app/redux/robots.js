@@ -8,6 +8,7 @@ const initialState = {
 // ACTION TYPES
 const GOT_ROBOTS_FROM_SERVER = "GOT_ROBOTS_FROM_SERVER";
 const GOT_ROBOT_FROM_SERVER = "GOT_ROBOT_FROM_SERVER";
+const ADDED_NEW_ROBOT = "ADDED_NEW_ROBOT";
 
 // ACTION CREATORS
 const gotRobotsFromServer = data => ({
@@ -17,6 +18,11 @@ const gotRobotsFromServer = data => ({
 
 const gotRobotFromServer = data => ({
   type: GOT_ROBOT_FROM_SERVER,
+  data
+});
+
+const addedNewRobot = data => ({
+  type: ADDED_NEW_ROBOT,
   data
 });
 
@@ -33,6 +39,12 @@ export const fetchRobot = id => {
     dispatch(gotRobotFromServer(data));
   };
 };
+export const addRobot = obj => {
+  return async function(dispatch) {
+    const { data } = await Axios.post("/api/robots", obj);
+    dispatch(addedNewRobot(data));
+  };
+};
 
 export const robotsReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -40,6 +52,8 @@ export const robotsReducer = (state = initialState, action) => {
       return { ...state, robotsList: action.data };
     case GOT_ROBOT_FROM_SERVER:
       return { ...state, currentRobot: action.data };
+    case ADDED_NEW_ROBOT:
+      return { ...state, robotsList: [...state.robotsList, action.data] };
     default:
       return state;
   }

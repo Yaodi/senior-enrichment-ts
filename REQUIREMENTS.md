@@ -48,8 +48,8 @@ The requirements below are broken into separate **tiers**, which model the way w
 - [x] Sequelize (Project): deadline must be a valid date
 - [x] Navigation: navbar to navigate to home, robots
 - [x] Navigation: navbar to navigate to projects
-- [] Seed File: creates at least one robot that has several projects
-- [] Seed File: creates at least one project that has several robots
+- [x] Seed File: creates at least one robot that has several projects
+- [x] Seed File: creates at least one project that has several robots
 
 Congrats! You have completed your first vertical slice! Make sure to `commit -m "Feature: Get all robots and projects"` before moving on (see RUBRIC.md - points are awarded/deducted for a proper git workflow)!
 
@@ -157,13 +157,13 @@ Congrats! You have completed your fourth vertical slice! Make sure to `commit -m
 - [x] Submitting the form with valid data should:
   - [x] Make an AJAX request that causes that project to be updated in the database
   - [x] Update the project in the current view without needing to refresh the page
-- [ ] In the single-project view, display an `Unassign` button next to each robot assigned to it, which unassigns that robot (in the database as well as this view)
-- [ ] In the single-project view, display a `Complete` button, which marks the project as completed (in the database as well as this view)
+- [x] In the single-project view, display an `Unassign` button next to each robot assigned to it, which unassigns that robot (in the database as well as this view)
+- [x] In the single-project view, display a `Complete` button, which marks the project as completed (in the database as well as this view)
 
 #### Backend
 
-- [ ] Write a route to update an existing project
-- [ ] Write a route to update an existing robot
+- [x] Write a route to update an existing project
+- [x] Write a route to update an existing robot
 
 </details>
 

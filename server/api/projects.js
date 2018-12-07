@@ -6,7 +6,7 @@ router.get("/", async (req, res, next) => {
     console.log("CREATING MANY TO MANY RELATIONSHIPS!!!!!");
     const projects = await Project.findAll({
       include: { all: true },
-      order: [["createdAt", "DESC"]]
+      order: [["id", "ASC"]]
     });
     res.json(projects);
   } catch (err) {

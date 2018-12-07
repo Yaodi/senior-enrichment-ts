@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 class SingleProject extends Component {
   constructor() {
     super();
-    this.state = { show: false, button: true };
+    this.state = { show: false };
   }
   componentDidMount() {
     this.props.fetchProject(this.props.match.params.projectId);
@@ -21,7 +21,6 @@ class SingleProject extends Component {
 
       deadline = `${AMERICA.join("/")} at ${arr[1].split(".")[0]}`;
     }
-    console.log(this.props.project.completed);
     return (
       <React.Fragment>
         <Navbar />
@@ -39,18 +38,24 @@ class SingleProject extends Component {
         <h3>Description: </h3>
         {this.props.project.description}
         <h3>Priority Level: {this.props.project.priority}</h3>
-        {/* {!this.props.project.completed ? (
+
+        {/* conditionally show a completed button which updates competed status in database */}
+        {!this.props.project.completed ? (
           <form
             onSubmit={event => {
               event.preventDefault();
-              this.
+
+              this.props.updateProject(this.props.project.id, {
+                completed: true
+              });
+              this.props.history.push("/updated");
             }}
           >
             <button type="submit">complete</button>
           </form>
         ) : (
           <h3>Already Complete!</h3>
-        )} */}
+        )}
 
         <h3>Robots Assigned:</h3>
         <ul>

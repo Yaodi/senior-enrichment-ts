@@ -48,7 +48,7 @@ class SingleRobot extends Component {
                   }}
                 >
                   {" "}
-                  Remove
+                  Unassign
                 </button>
               </li>
             ))

@@ -26,7 +26,6 @@ router.get("/:id", async (req, res, next) => {
 });
 router.put("/:id", async (req, res, next) => {
   try {
-    console.log(req.body);
     const [numberOfAffectedRows, affectedRows] = await Robot.update(req.body, {
       // include: { all: true },
       where: { id: req.params.id },
@@ -59,20 +58,6 @@ router.delete("/:id", async (req, res, next) => {
     next(err);
   }
 });
-
-// router.put("/relations", async (req, res, next) => {
-//   try {
-//     console.log(req.body.robotId);
-//     const robotInstance = await Robot.findById(req.body.robotId, {
-//       include: { all: true }
-//     });
-//     const projectInstance = await Project.findById(req.body.projectId);
-//     await robotInstance.removeProject(projectInstance);
-//     res.json(robotInstance);
-//   } catch (err) {
-//     next(err);
-//   }
-// });
 
 router.use((req, res, next) => {
   const err = new Error("Robot route not found!");

@@ -6,11 +6,14 @@ import Navbar from "./Navbar";
 class RobotUpdateForm extends Component {
   constructor(props) {
     super(props);
-    this.state = { name: props.robot.name, fuelType: props.robot.fuelType };
+    this.state = {
+      name: props.robot.name,
+      fuelType: props.robot.fuelType,
+      fuelLevel: props.robot.fuelLevel
+    };
   }
 
   render() {
-    console.log(this.state);
     return (
       <React.Fragment>
         <Navbar />
@@ -34,7 +37,19 @@ class RobotUpdateForm extends Component {
             />
           </div>
           <br />
+          Fuel Level{" "}
+          <input
+            type="number"
+            value={this.state.fuelLevel}
+            min={0}
+            max={100}
+            onChange={event => {
+              this.setState({ fuelLevel: parseInt(event.target.value, 10) });
+            }}
+          />
+          <br />
           <div>
+            <br />
             Fuel Type:{" "}
             <select
               name="fuelType"

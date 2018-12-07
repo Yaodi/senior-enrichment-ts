@@ -16,7 +16,6 @@ class ProjectUpdateForm extends Component {
   }
 
   render() {
-    console.log(this.state);
     return (
       <React.Fragment>
         <Navbar />

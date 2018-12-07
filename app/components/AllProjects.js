@@ -45,7 +45,7 @@ class AllProjects extends Component {
     ) : (
       <div>
         <Navbar />
-        <h1>ERROR NO PROJECTS FOUND</h1>
+        <h1> NO PROJECTS </h1>
       </div>
     );
   }

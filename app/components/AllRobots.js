@@ -38,7 +38,7 @@ class AllRobots extends Component {
     ) : (
       <div>
         <Navbar />
-        <h1>ERROR NO ROBOTS FOUND</h1>
+        <h1> NO ROBOTS </h1>
       </div>
     );
   }

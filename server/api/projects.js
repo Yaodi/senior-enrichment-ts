@@ -3,10 +3,9 @@ const { db, Project, Robot } = require("../db/index");
 
 router.get("/", async (req, res, next) => {
   try {
-    console.log("CREATING MANY TO MANY RELATIONSHIPS!!!!!");
     const projects = await Project.findAll({
       include: { all: true },
-      order: [["id", "ASC"]]
+      order: [["createdAt", "DESC"]]
     });
     res.json(projects);
   } catch (err) {

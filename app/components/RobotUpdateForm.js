@@ -4,11 +4,13 @@ import { fetchRobot, updateRobot } from "../redux/robots";
 import Navbar from "./Navbar";
 
 class RobotUpdateForm extends Component {
-  constructor() {
-    super();
-    this.state = { name: "", fuelType: "electric" };
+  constructor(props) {
+    super(props);
+    this.state = { name: props.robot.name, fuelType: props.robot.fuelType };
   }
+
   render() {
+    console.log(this.state);
     return (
       <React.Fragment>
         <Navbar />
@@ -36,6 +38,7 @@ class RobotUpdateForm extends Component {
             Fuel Type:{" "}
             <select
               name="fuelType"
+              value={this.state.fuelType}
               onChange={event => {
                 this.setState({ fuelType: event.target.value });
               }}

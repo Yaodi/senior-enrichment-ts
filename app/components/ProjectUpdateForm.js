@@ -4,9 +4,12 @@ import Navbar from "./Navbar";
 import { fetchProject, updateProject } from "../redux/projects";
 
 class ProjectUpdateForm extends Component {
-  constructor() {
-    super();
-    this.state = { title: "", completed: null };
+  constructor(props) {
+    super(props);
+    this.state = {
+      title: props.project.title,
+      completed: props.project.completed
+    };
   }
   componentDidMount() {
     this.props.fetchProject(this.props.match.params.projectId);
@@ -40,8 +43,8 @@ class ProjectUpdateForm extends Component {
           <input
             onChange={() => this.setState({ completed: true })}
             type="radio"
-            value="Complete"
             name="checkComplete"
+            checked={this.state.completed}
           />{" "}
           Complete
           <br />
@@ -49,7 +52,7 @@ class ProjectUpdateForm extends Component {
             onChange={() => this.setState({ completed: false })}
             type="radio"
             name="checkComplete"
-            value="Incomplete"
+            checked={!this.state.completed}
           />{" "}
           Incomplete
           <br />

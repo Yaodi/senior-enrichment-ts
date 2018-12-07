@@ -3,11 +3,11 @@ const path = require("path");
 
 const { db, Project, Robot } = require("../db/index");
 
-router.get("/", async (req, res, next) => {
+router.get("/all/:sortBy", async (req, res, next) => {
   try {
     const robots = await Robot.findAll({
       include: { all: true },
-      order: [["createdAt", "DESC"]]
+      order: [[req.params.sortBy, "DESC"]]
     });
     res.json(robots);
   } catch (err) {

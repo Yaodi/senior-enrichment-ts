@@ -6,12 +6,8 @@ import { fetchProjects, deleteProject } from "../redux/projects";
 import { runInThisContext } from "vm";
 
 class AllProjects extends Component {
-  constructor() {
-    super();
-    this.state = { sortBy: "createdAt" };
-  }
   componentDidMount() {
-    this.props.fetchProjects(this.state.sortBy);
+    this.props.fetchProjects("title");
   }
   render() {
     return this.props.loading ? (
@@ -20,6 +16,19 @@ class AllProjects extends Component {
       <div>
         <Navbar />
         <div className="projectList">
+          <form>
+            <select
+              name="sortBy"
+              onChange={event => {
+                this.props.fetchProjects(event.target.value);
+              }}
+            >
+              <option value="title">-----------------</option>
+              <option value="createdAt">Created At</option>
+              <option value="priority">Priority</option>
+              <option value="deadline">Deadline</option>
+            </select>
+          </form>
           {this.props.projects.map(project => {
             let deadline = project.deadline;
             let arr = deadline.split("T");

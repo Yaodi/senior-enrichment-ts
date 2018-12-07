@@ -178,8 +178,8 @@ Congrats! You have completed your fourth vertical slice! Make sure to `commit -m
   - [x] Whenever a component needs to wait for data to load from the server, a "loading" message should be displayed until the data is available
   - [x] Overall, the app is spectacularly styled and visually stunning
 - [ ] Ordering
-  - [ ] Create option for projects to be ordered based on priority on all-projects view
-  - [ ] Create option for projects to be ordered based on deadline on all-projects view
+  - [x] Create option for projects to be ordered based on priority on all-projects view
+  - [x] Create option for projects to be ordered based on deadline on all-projects view
   - [ ] Create option for robots to be ordered based on fuel level on all-robots view
 - [ ] Filtering
   - [ ] Create filters on all-projects view so that projects can be filtered based completion status and priority (allow multiple filters to be applied)

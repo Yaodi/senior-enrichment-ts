@@ -34,9 +34,9 @@ const updatedRobot = data => ({
 });
 
 // THUNKS!
-export const fetchRobots = () => {
+export const fetchRobots = sortBy => {
   return async function(dispatch) {
-    const { data } = await Axios.get("/api/robots");
+    const { data } = await Axios.get(`/api/robots/all/${sortBy}`);
     dispatch(gotRobotsFromServer(data));
   };
 };

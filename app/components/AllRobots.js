@@ -6,7 +6,7 @@ import { fetchRobots, deleteRobot } from "../redux/robots";
 
 class AllRobots extends Component {
   componentDidMount() {
-    this.props.fetchRobots();
+    this.props.fetchRobots("name");
   }
   render() {
     console.log(this.props.loading);
@@ -16,6 +16,19 @@ class AllRobots extends Component {
       <React.Fragment>
         <Navbar />
         <div className="allRobots">
+          <form>
+            Sort By{" "}
+            <select
+              name="sortBy"
+              onChange={event => {
+                this.props.fetchRobots(event.target.value);
+              }}
+            >
+              <option value="name">-----------------</option>
+              <option value="createdAt">Created At</option>
+              <option value="fuelLevel">Fuel Level</option>
+            </select>
+          </form>
           {this.props.robots.map(robot => (
             <React.Fragment>
               <span className="robot">
@@ -53,7 +66,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchRobots: () => dispatch(fetchRobots()),
+    fetchRobots: sortBy => dispatch(fetchRobots(sortBy)),
     deleteRobot: id => dispatch(deleteRobot(id))
   };
 };

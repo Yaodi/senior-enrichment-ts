@@ -6,7 +6,7 @@ router.get("/all/:sortBy", async (req, res, next) => {
     console.log(req.params.sortBy);
     const projects = await Project.findAll({
       include: { all: true },
-      order: [["priority", "DESC"]]
+      order: [[req.params.sortBy, "DESC"]]
     });
     res.json(projects);
   } catch (err) {

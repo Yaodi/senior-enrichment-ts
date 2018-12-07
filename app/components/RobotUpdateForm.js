@@ -64,7 +64,10 @@ class RobotUpdateForm extends Component {
             </select>
           </div>
           <br />
-          <button type="submit">Submit</button>
+          <button type="submit" disabled={!this.state.name.length}>
+            Submit
+          </button>
+          {!this.state.name.length ? <span>Name can't be empty</span> : null}{" "}
         </form>
       </React.Fragment>
     );

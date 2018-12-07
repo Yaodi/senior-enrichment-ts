@@ -7,8 +7,8 @@ class ProjectUpdateForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: { title: props.project.title, completed: props.project.completed },
-      valid: true
+      title: props.project.title,
+      completed: props.project.completed
     };
   }
   componentDidMount() {
@@ -31,7 +31,7 @@ class ProjectUpdateForm extends Component {
         <form
           onSubmit={event => {
             event.preventDefault();
-            this.props.updateProject(this.props.project.id, this.state.data);
+            this.props.updateProject(this.props.project.id, this.state);
             this.props.history.push(`/projects/${this.props.project.id}`);
           }}
         >
@@ -39,36 +39,42 @@ class ProjectUpdateForm extends Component {
             Title:{" "}
             <input
               type="text"
-              value={this.state.data.title}
+              value={this.state.title}
               onChange={event => {
                 this.setState({
-                  data: { title: event.target.value },
-                  valid: this.validateTitle(event.target.value)
+                  title: event.target.value
                 });
               }}
             />
           </div>
           <br />
           <input
-            onChange={() => this.setState({ data: { completed: true } })}
+            onChange={() => this.setState({ completed: true })}
             type="radio"
             name="checkComplete"
-            checked={this.state.data.completed}
+            checked={this.state.completed}
           />{" "}
           Complete
           <br />
           <input
-            onChange={() => this.setState({ data: { completed: false } })}
+            onChange={() => this.setState({ completed: false })}
             type="radio"
             name="checkComplete"
-            checked={!this.state.data.completed}
+            checked={!this.state.completed}
           />{" "}
           Incomplete
           <br />
-          <button type="submit" disabled={!this.state.valid}>
+          <button
+            type="submit"
+            disabled={!this.validateTitle(this.state.title)}
+          >
             Submit
           </button>
-          {!this.state.valid > 0 ? <span>{"  "}Invalid Title</span> : <span />}
+          {!this.validateTitle(this.state.title) > 0 ? (
+            <span>{"  "}Title can't be empty</span>
+          ) : (
+            <span />
+          )}
         </form>
       </React.Fragment>
     );

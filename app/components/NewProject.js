@@ -8,6 +8,13 @@ class NewProject extends Component {
     super();
     this.state = { title: "" };
   }
+  validateTitle(title) {
+    let count = 0;
+    for (let i = 0; i < title.length; i++) {
+      if (title[i] !== " ") count++;
+    }
+    return !!count;
+  }
   render() {
     return (
       <div>
@@ -33,7 +40,15 @@ class NewProject extends Component {
               }}
             />
           </label>
-          <button type="submit">Submit</button>
+          <button
+            type="submit"
+            disabled={!this.validateTitle(this.state.title)}
+          >
+            Submit
+          </button>
+          {!this.validateTitle(this.state.title) ? (
+            <span> Invalid Title </span>
+          ) : null}
         </form>
       </div>
     );

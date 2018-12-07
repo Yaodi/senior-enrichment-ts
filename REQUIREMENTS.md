@@ -172,7 +172,7 @@ Congrats! You have completed your fourth vertical slice! Make sure to `commit -m
 <details>
 
 - [ ] Finishing Touches
-  - [ ] If a user attempts to add a new robot or project without a required field, a helpful message should be displayed
+  - [x] If a user attempts to add a new robot or project without a required field, a helpful message should be displayed
   - [ ] If a user attempts to access a page that doesn't exist (ex. `/potato`), a helpful "not found" message should be displayed
   - [ ] If a user attempts to view a robot/project that doesn't exist, a helpful message should be displayed
   - [ ] Whenever a component needs to wait for data to load from the server, a "loading" message should be displayed until the data is available

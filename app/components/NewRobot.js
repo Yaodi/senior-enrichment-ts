@@ -34,8 +34,10 @@ class NewRobot extends Component {
               }}
             />
           </label>
-          <button type="submit">Submit</button>
-          {/* </Link> */}
+          <button type="submit" disabled={!this.state.name.length}>
+            Submit
+          </button>
+          {!this.state.name.length ? <span>Name can't be empty</span> : null}
         </form>
       </div>
     );

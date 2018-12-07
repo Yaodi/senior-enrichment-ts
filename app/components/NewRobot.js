@@ -9,6 +9,13 @@ class NewRobot extends Component {
     super();
     this.state = { name: "" };
   }
+  validateName(name) {
+    let count = 0;
+    for (let i = 0; i < name.length; i++) {
+      if (name[i] !== " ") count++;
+    }
+    return !!count;
+  }
   render() {
     return (
       <div>
@@ -34,10 +41,12 @@ class NewRobot extends Component {
               }}
             />
           </label>
-          <button type="submit" disabled={!this.state.name.length}>
+          <button type="submit" disabled={!this.validateName(this.state.name)}>
             Submit
           </button>
-          {!this.state.name.length ? <span>Name can't be empty</span> : null}
+          {!this.validateName(this.state.name) ? (
+            <span>Name can't be empty</span>
+          ) : null}
         </form>
       </div>
     );

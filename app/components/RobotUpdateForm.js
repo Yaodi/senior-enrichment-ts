@@ -12,6 +12,13 @@ class RobotUpdateForm extends Component {
       fuelLevel: props.robot.fuelLevel
     };
   }
+  validateName(name) {
+    let count = 0;
+    for (let i = 0; i < name.length; i++) {
+      if (name[i] !== " ") count++;
+    }
+    return !!count;
+  }
 
   render() {
     return (
@@ -64,10 +71,12 @@ class RobotUpdateForm extends Component {
             </select>
           </div>
           <br />
-          <button type="submit" disabled={!this.state.name.length}>
+          <button type="submit" disabled={!this.validateName(this.state.name)}>
             Submit
           </button>
-          {!this.state.name.length ? <span>Name can't be empty</span> : null}{" "}
+          {!this.validateName(this.state.name) ? (
+            <span>Name can't be empty</span>
+          ) : null}{" "}
         </form>
       </React.Fragment>
     );

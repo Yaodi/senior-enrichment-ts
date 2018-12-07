@@ -9,7 +9,10 @@ class AllRobots extends Component {
     this.props.fetchRobots();
   }
   render() {
-    return this.props.robots.length ? (
+    console.log(this.props.loading);
+    return this.props.loading ? (
+      <h1>loading</h1>
+    ) : this.props.robots.length ? (
       <React.Fragment>
         <Navbar />
         <div className="allRobots">
@@ -45,7 +48,7 @@ class AllRobots extends Component {
 }
 
 const mapStateToProps = state => {
-  return { robots: state.robots.robotsList };
+  return { robots: state.robots.robotsList, loading: state.robots.loading };
 };
 
 const mapDispatchToProps = dispatch => {

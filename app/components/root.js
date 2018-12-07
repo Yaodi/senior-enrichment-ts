@@ -17,7 +17,6 @@ import NotFoundPage from "./NotFoundPage";
 export default class Root extends React.Component {
   componentDidMount() {
     // Huh, I wonder what this mysterious componentDidMount is doing here... 🤔
-    // DISPATCH A FETCH ACTION TO GRAB ALL OF THE  DATA!!!!!!!
   }
   render() {
     return (

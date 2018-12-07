@@ -12,16 +12,22 @@ class SingleProject extends Component {
   componentDidMount() {
     this.props.fetchProject(this.props.match.params.projectId);
   }
-  render() {
-    let deadline = this.props.project.deadline;
+  deadline(deadline) {
     if (deadline) {
       let arr = deadline.split("T");
       arr[0] = arr[0].split("-");
       let AMERICA = [arr[0][1], arr[0][2], arr[0][0]];
 
-      deadline = `${AMERICA.join("/")} at ${arr[1].split(".")[0]}`;
+      return `${AMERICA.join("/")} at ${arr[1].split(".")[0]}`;
     }
-    return (
+  }
+  render() {
+    return isNaN(parseInt(this.props.match.params.projectId, 10)) ||
+      this.props.project === null ? (
+      <React.Fragment>
+        <Navbar /> <h1>Project does not exist</h1>
+      </React.Fragment>
+    ) : (
       <React.Fragment>
         <Navbar />
         <button
@@ -34,7 +40,7 @@ class SingleProject extends Component {
           Update
         </button>
         <h1> {this.props.project.title}</h1>
-        <h3> Deadline: {deadline}</h3>
+        <h3> Deadline: {this.deadline(this.props.project.deadline)}</h3>
         <h3>Description: </h3>
         {this.props.project.description}
         <h3>Priority Level: {this.props.project.priority}</h3>

@@ -2,7 +2,8 @@ import Axios from "axios";
 
 const initialState = {
   projectsList: [],
-  currentProject: { robots: [], deadline: "" }
+  currentProject: { robots: [], deadline: "" },
+  loading: true
 };
 
 // ACTION TYPES
@@ -31,9 +32,9 @@ const updatedProject = data => ({
 });
 
 // THUNK!
-export const fetchProjects = () => {
+export const fetchProjects = sortBy => {
   return async function(dispatch) {
-    const { data } = await Axios.get("/api/projects");
+    const { data } = await Axios.get(`/api/projects/all/${sortBy}`);
     dispatch(gotProjectsFromServer(data));
   };
 };
@@ -74,7 +75,7 @@ export const updateRelation = (projectId, robotId) => {
 export const projectsReducer = (state = initialState, action) => {
   switch (action.type) {
     case GOT_PROJECTS_FROM_SERVER:
-      return { ...state, projectsList: action.data };
+      return { ...state, projectsList: action.data, loading: false };
     case GOT_PROJECT_FROM_SERVER:
       return { ...state, currentProject: action.data };
     case ADDED_NEW_PROJECT:

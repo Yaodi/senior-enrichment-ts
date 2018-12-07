@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const Navbar = props => {
-  console.log("navbar", props);
   return (
     <React.Fragment>
       <nav>

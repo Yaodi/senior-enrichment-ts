@@ -2,7 +2,8 @@ import Axios from "axios";
 
 const initialState = {
   robotsList: [],
-  currentRobot: { fuelType: "", projects: [], name: "", fuelLevel: 0 }
+  currentRobot: { fuelType: "", projects: [], name: "", fuelLevel: 0 },
+  loading: true
 };
 
 // ACTION TYPES
@@ -79,7 +80,7 @@ export const updateRobot = (id, fieldToUpdate) => {
 export const robotsReducer = (state = initialState, action) => {
   switch (action.type) {
     case GOT_ROBOTS_FROM_SERVER:
-      return { ...state, robotsList: action.data };
+      return { ...state, robotsList: action.data, loading: false };
     case GOT_ROBOT_FROM_SERVER:
       return { ...state, currentRobot: action.data };
     case GOT_NEW_ROBOT_FROM_SERVER:

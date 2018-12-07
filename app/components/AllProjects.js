@@ -3,13 +3,20 @@ import Navbar from "./Navbar";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { fetchProjects, deleteProject } from "../redux/projects";
+import { runInThisContext } from "vm";
 
 class AllProjects extends Component {
+  constructor() {
+    super();
+    this.state = { sortBy: "createdAt" };
+  }
   componentDidMount() {
-    this.props.fetchProjects();
+    this.props.fetchProjects(this.state.sortBy);
   }
   render() {
-    return this.props.projects.length ? (
+    return this.props.loading ? (
+      <h1>loading</h1>
+    ) : this.props.projects.length ? (
       <div>
         <Navbar />
         <div className="projectList">
@@ -52,12 +59,15 @@ class AllProjects extends Component {
 }
 
 const mapStateToProps = state => {
-  return { projects: state.projects.projectsList };
+  return {
+    projects: state.projects.projectsList,
+    loading: state.projects.loading
+  };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchProjects: () => dispatch(fetchProjects()),
+    fetchProjects: sortBy => dispatch(fetchProjects(sortBy)),
     deleteProject: id => dispatch(deleteProject(id))
   };
 };

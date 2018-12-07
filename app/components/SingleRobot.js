@@ -10,7 +10,13 @@ class SingleRobot extends Component {
     this.props.fetchRobot(this.props.match.params.robotId);
   }
   render() {
-    return (
+    return isNaN(parseInt(this.props.match.params.robotId, 10)) ||
+      this.props.robot === null ? (
+      <React.Fragment>
+        <Navbar />
+        <h1>Robot not Found</h1>
+      </React.Fragment>
+    ) : (
       <div>
         <Navbar />
         <button

@@ -1,11 +1,12 @@
 const router = require("express").Router();
 const { db, Project, Robot } = require("../db/index");
 
-router.get("/", async (req, res, next) => {
+router.get("/all/:sortBy", async (req, res, next) => {
   try {
+    console.log(req.params.sortBy);
     const projects = await Project.findAll({
       include: { all: true },
-      order: [["createdAt", "DESC"]]
+      order: [["priority", "DESC"]]
     });
     res.json(projects);
   } catch (err) {

@@ -7,12 +7,20 @@ class ProjectUpdateForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      title: props.project.title,
-      completed: props.project.completed
+      data: { title: props.project.title, completed: props.project.completed },
+      valid: true
     };
   }
   componentDidMount() {
     this.props.fetchProject(this.props.match.params.projectId);
+  }
+
+  validateTitle(title) {
+    let count = 0;
+    for (let i = 0; i < title.length; i++) {
+      if (title[i] !== " ") count++;
+    }
+    return !!count;
   }
 
   render() {
@@ -23,8 +31,7 @@ class ProjectUpdateForm extends Component {
         <form
           onSubmit={event => {
             event.preventDefault();
-
-            this.props.updateProject(this.props.project.id, this.state);
+            this.props.updateProject(this.props.project.id, this.state.data);
             this.props.history.push(`/projects/${this.props.project.id}`);
           }}
         >
@@ -32,30 +39,36 @@ class ProjectUpdateForm extends Component {
             Title:{" "}
             <input
               type="text"
-              value={this.state.title}
+              value={this.state.data.title}
               onChange={event => {
-                this.setState({ title: event.target.value });
+                this.setState({
+                  data: { title: event.target.value },
+                  valid: this.validateTitle(event.target.value)
+                });
               }}
             />
           </div>
           <br />
           <input
-            onChange={() => this.setState({ completed: true })}
+            onChange={() => this.setState({ data: { completed: true } })}
             type="radio"
             name="checkComplete"
-            checked={this.state.completed}
+            checked={this.state.data.completed}
           />{" "}
           Complete
           <br />
           <input
-            onChange={() => this.setState({ completed: false })}
+            onChange={() => this.setState({ data: { completed: false } })}
             type="radio"
             name="checkComplete"
-            checked={!this.state.completed}
+            checked={!this.state.data.completed}
           />{" "}
           Incomplete
           <br />
-          <button type="submit">Submit</button>
+          <button type="submit" disabled={!this.state.valid}>
+            Submit
+          </button>
+          {!this.state.valid > 0 ? <span>{"  "}Invalid Title</span> : <span />}
         </form>
       </React.Fragment>
     );

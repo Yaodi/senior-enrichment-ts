@@ -24,7 +24,6 @@ class RobotUpdateForm extends Component {
     return (
       <React.Fragment>
         <Navbar />
-        {/* <h1>Name:{this.props.robot.name}</h1> */}
         <h2>Update Robot!</h2>
         <form
           onSubmit={event => {

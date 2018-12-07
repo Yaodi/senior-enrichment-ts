@@ -54,7 +54,7 @@ class SingleProject extends Component {
               this.props.updateProject(this.props.project.id, {
                 completed: true
               });
-              this.props.history.push("/updated");
+              // this.props.history.push("/updated");
             }}
           >
             <button type="submit">complete</button>
@@ -92,7 +92,7 @@ class SingleProject extends Component {
                           this.props.project.id,
                           robot.id
                         );
-                        this.props.history.push("/updated");
+                        // this.props.history.push("/updated");
                       }}
                     >
                       {" "}

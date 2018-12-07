@@ -29,7 +29,10 @@ router.put("/relationz", async (req, res, next) => {
       include: { all: true }
     });
     await robotInstance.removeProject(projectInstance);
-    res.json(projectInstance);
+    const updatedInstance = await Project.findById(req.body.projectId, {
+      include: { all: true }
+    });
+    res.json(updatedInstance);
   } catch (err) {
     next(err);
   }
@@ -41,7 +44,10 @@ router.put("/relations", async (req, res, next) => {
     });
     const projectInstance = await Project.findById(req.body.projectId);
     await robotInstance.removeProject(projectInstance);
-    res.json(robotInstance);
+    const updatedInstance = await Robot.findById(req.body.robotId, {
+      include: { all: true }
+    });
+    res.json(updatedInstance);
   } catch (err) {
     next(err);
   }

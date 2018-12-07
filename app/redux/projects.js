@@ -78,6 +78,8 @@ export const projectsReducer = (state = initialState, action) => {
       return { ...state, projectsList: action.data, loading: false };
     case GOT_PROJECT_FROM_SERVER:
       return { ...state, currentProject: action.data };
+    case GOT_UPDATED_PROJECT_FROM_SERVER:
+      return { ...state, currentProject: action.data };
     case ADDED_NEW_PROJECT:
       return { ...state, projectsList: [...state.projectsList, action.data] };
     default:

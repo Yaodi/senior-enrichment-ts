@@ -46,11 +46,8 @@ class SingleRobot extends Component {
                 <Link to={`/projects/${project.id}`}>{project.title}</Link>
                 {"  "}
                 <button
-                  type="button"
-                  onClick={event => {
-                    event.preventDefault();
+                  onClick={() => {
                     this.props.updateRelation(this.props.robot.id, project.id);
-                    this.props.history.push("/updated");
                   }}
                 >
                   {" "}

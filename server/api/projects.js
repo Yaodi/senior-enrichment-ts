@@ -58,7 +58,10 @@ router.put("/:id", async (req, res, next) => {
         returning: true
       }
     );
-    res.json(affectedRows[0]);
+    const updatedInstance = await Project.findById(req.params.id, {
+      include: { all: true }
+    });
+    res.json(updatedInstance);
   } catch (err) {
     next(err);
   }

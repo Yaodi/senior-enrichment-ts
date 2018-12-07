@@ -177,10 +177,10 @@ Congrats! You have completed your fourth vertical slice! Make sure to `commit -m
   - [x] If a user attempts to view a robot/project that doesn't exist, a helpful message should be displayed
   - [x] Whenever a component needs to wait for data to load from the server, a "loading" message should be displayed until the data is available
   - [x] Overall, the app is spectacularly styled and visually stunning
-- [ ] Ordering
+- [x] Ordering
   - [x] Create option for projects to be ordered based on priority on all-projects view
   - [x] Create option for projects to be ordered based on deadline on all-projects view
-  - [ ] Create option for robots to be ordered based on fuel level on all-robots view
+  - [x] Create option for robots to be ordered based on fuel level on all-robots view
 - [ ] Filtering
   - [ ] Create filters on all-projects view so that projects can be filtered based completion status and priority (allow multiple filters to be applied)
   - [ ] Create a filter on all-robots view to only show projects without assigned robots and vice versa

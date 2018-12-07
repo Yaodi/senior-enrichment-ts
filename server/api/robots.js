@@ -32,6 +32,7 @@ router.put("/:id", async (req, res, next) => {
       // RETURNING TRUE GIVES US OUR UPDATED ROW BACK
       returning: true
     });
+    console.log("RETURNED STUFF", affectedRows);
     res.json(affectedRows[0]);
   } catch (err) {
     next(err);

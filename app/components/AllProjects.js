@@ -17,6 +17,7 @@ class AllProjects extends Component {
         <Navbar />
         <div className="projectList">
           <form>
+            Sort By{" "}
             <select
               name="sortBy"
               onChange={event => {

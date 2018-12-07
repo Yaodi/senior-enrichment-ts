@@ -9,7 +9,6 @@ class AllRobots extends Component {
     this.props.fetchRobots("name");
   }
   render() {
-    console.log(this.props.loading);
     return this.props.loading ? (
       <h1>loading</h1>
     ) : this.props.robots.length ? (

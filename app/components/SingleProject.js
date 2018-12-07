@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Navbar from "./Navbar";
 import { connect } from "react-redux";
-import { fetchProject } from "../redux/projects";
+import { fetchProject, updateRelation, updateProject } from "../redux/projects";
 import { Link } from "react-router-dom";
 
 class SingleProject extends Component {
@@ -21,14 +21,36 @@ class SingleProject extends Component {
 
       deadline = `${AMERICA.join("/")} at ${arr[1].split(".")[0]}`;
     }
+    console.log(this.props.project.completed);
     return (
       <React.Fragment>
         <Navbar />
+        <button
+          onClick={() => {
+            this.props.history.push(
+              `/projects/${this.props.match.params.projectId}/update`
+            );
+          }}
+        >
+          Update
+        </button>
         <h1> {this.props.project.title}</h1>
         <h3> Deadline: {deadline}</h3>
         <h3>Description: </h3>
         {this.props.project.description}
         <h3>Priority Level: {this.props.project.priority}</h3>
+        {/* {!this.props.project.completed ? (
+          <form
+            onSubmit={event => {
+              event.preventDefault();
+              this.
+            }}
+          >
+            <button type="submit">complete</button>
+          </form>
+        ) : (
+          <h3>Already Complete!</h3>
+        )} */}
 
         <h3>Robots Assigned:</h3>
         <ul>
@@ -51,6 +73,20 @@ class SingleProject extends Component {
                       <br />
                       <img src={robot.imageUrl} />
                     </Link>
+                    <button
+                      type="button"
+                      onClick={event => {
+                        event.preventDefault();
+                        this.props.updateRelation(
+                          this.props.project.id,
+                          robot.id
+                        );
+                        this.props.history.push("/updated");
+                      }}
+                    >
+                      {" "}
+                      Remove
+                    </button>
                   </span>
                 ))}
               </span>
@@ -75,7 +111,13 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => {
-  return { fetchProject: id => dispatch(fetchProject(id)) };
+  return {
+    fetchProject: id => dispatch(fetchProject(id)),
+    updateProject: (id, fieldToUpdate) =>
+      dispatch(updateProject(id, fieldToUpdate)),
+    updateRelation: (projectId, robotId) =>
+      dispatch(updateRelation(projectId, robotId))
+  };
 };
 
 export default connect(

@@ -143,6 +143,13 @@ const seed = async () => {
     await db.sync({ force: true });
     await Promise.all(robots.map(obj => Robot.create(obj)));
     await Promise.all(projects.map(obj => Project.create(obj)));
+    const allProjects = await Project.findAll();
+    const projectsToRelate = allProjects.slice(0, 5);
+    const allRobots = await Robot.findAll();
+    const robotsToRelate = allRobots.slice(0, 5);
+    for (let i = 0; i < robotsToRelate.length; i++) {
+      await robotsToRelate[i].addProjects(projectsToRelate);
+    }
 
     // seed your database here!
   } catch (err) {

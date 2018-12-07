@@ -22,6 +22,18 @@ const { db, Project, Robot } = require("../db/index");
 router.use("/robots", require("./robots"));
 router.use("/projects", require("./projects"));
 
+router.put("/relationz", async (req, res, next) => {
+  try {
+    const robotInstance = await Robot.findById(req.body.robotId);
+    const projectInstance = await Project.findById(req.body.projectId, {
+      include: { all: true }
+    });
+    await robotInstance.removeProject(projectInstance);
+    res.json(projectInstance);
+  } catch (err) {
+    next(err);
+  }
+});
 router.put("/relations", async (req, res, next) => {
   try {
     const robotInstance = await Robot.findById(req.body.robotId, {

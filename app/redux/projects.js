@@ -9,6 +9,8 @@ const initialState = {
 const GOT_PROJECTS_FROM_SERVER = "GOT_PROJECTS_FROM_SERVER";
 const GOT_PROJECT_FROM_SERVER = "GOT_PROJECT_FROM_SERVER";
 const ADDED_NEW_PROJECT = "ADDED_NEW_PROJECT";
+const GOT_NEW_PROJECT_FROM_SERVER = "GOT_NEW_PROJECT_FROM_SERVER";
+const GOT_UPDATED_PROJECT_FROM_SERVER = "GOT_UPDATED_PROJECT_FROM_SERVER";
 
 // ACTION CREATORS
 const gotProjectsFromServer = data => ({
@@ -21,6 +23,10 @@ const gotProjectFromServer = data => ({
 });
 const addedNewProject = data => ({
   type: ADDED_NEW_PROJECT,
+  data
+});
+const updatedProject = data => ({
+  type: GOT_UPDATED_PROJECT_FROM_SERVER,
   data
 });
 
@@ -47,6 +53,21 @@ export const deleteProject = id => {
   return async function(dispatch) {
     const { data } = await Axios.delete(`/api/projects/${id}`);
     dispatch(gotProjectsFromServer(data));
+  };
+};
+export const updateProject = (id, fieldToUpdate) => {
+  return async function(dispatch) {
+    const { data } = await Axios.put(`/api/projects/${id}`, fieldToUpdate);
+    dispatch(updatedProject(data));
+  };
+};
+export const updateRelation = (projectId, robotId) => {
+  return async function(dispatch) {
+    const { data } = await Axios.put("/api/relationz", {
+      projectId,
+      robotId
+    });
+    dispatch(gotProjectFromServer(data));
   };
 };
 

@@ -3,12 +3,11 @@ const { db, Project, Robot } = require("../db/index");
 
 router.get("/", async (req, res, next) => {
   try {
+    console.log("CREATING MANY TO MANY RELATIONSHIPS!!!!!");
     const projects = await Project.findAll({
       include: { all: true },
       order: [["createdAt", "DESC"]]
     });
-    const robots = await Robot.findAll();
-    projects[0].addRobots(robots.slice(5));
     res.json(projects);
   } catch (err) {
     next(err);
@@ -42,6 +41,24 @@ router.delete("/:id", async (req, res, next) => {
       order: [["createdAt", "DESC"]]
     });
     res.json(projects);
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.put("/:id", async (req, res, next) => {
+  try {
+    console.log(req.params);
+    const [numberOfAffectedRows, affectedRows] = await Project.update(
+      req.body,
+      {
+        // include: { all: true },
+        where: { id: req.params.id },
+        // RETURNING TRUE GIVES US OUR UPDATED ROW BACK
+        returning: true
+      }
+    );
+    res.json(affectedRows[0]);
   } catch (err) {
     next(err);
   }

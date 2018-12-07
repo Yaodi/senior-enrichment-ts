@@ -3,14 +3,9 @@ import Navbar from "./Navbar";
 import { fetchRobot, updateRobot, updateRelation } from "../redux/robots";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { RefreshLocation } from "react-router";
 import RobotUpdateForm from "./RobotUpdateForm";
 
 class SingleRobot extends Component {
-  constructor() {
-    super();
-    this.state = { refreshes: 0 };
-  }
   componentDidMount() {
     this.props.fetchRobot(this.props.match.params.robotId);
   }

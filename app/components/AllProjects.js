@@ -3,11 +3,10 @@ import Navbar from "./Navbar";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { fetchProjects, deleteProject } from "../redux/projects";
-import { runInThisContext } from "vm";
 
 class AllProjects extends Component {
   componentDidMount() {
-    this.props.fetchProjects("title");
+    this.props.fetchProjects("createdAt");
   }
   render() {
     return this.props.loading ? (
@@ -24,7 +23,6 @@ class AllProjects extends Component {
                 this.props.fetchProjects(event.target.value);
               }}
             >
-              <option value="title">-----------------</option>
               <option value="createdAt">Created At</option>
               <option value="priority">Priority</option>
               <option value="deadline">Deadline</option>
@@ -86,7 +84,3 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(AllProjects);
-
-// Currently, we're just exporting the component as-is. When we're ready to
-// hook it up to the redux store, we'll export the connected component by default:
-// export default connect(mapState)(AllProjects)

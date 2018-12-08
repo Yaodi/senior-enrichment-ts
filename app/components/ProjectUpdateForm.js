@@ -6,6 +6,9 @@ import { fetchProject, updateProject } from "../redux/projects";
 class ProjectUpdateForm extends Component {
   constructor(props) {
     super(props);
+
+    // This sets up initial state to match redux store data (for convenience)
+
     this.state = {
       title: props.project.title,
       completed: props.project.completed
@@ -24,7 +27,12 @@ class ProjectUpdateForm extends Component {
   }
 
   render() {
-    return (
+    return !this.state.title ? (
+      <React.Fragment>
+        <Navbar />
+        <h1>Invalid Hard Refresh </h1>
+      </React.Fragment>
+    ) : (
       <React.Fragment>
         <Navbar />
         <h2>Update Project!</h2>
@@ -70,11 +78,12 @@ class ProjectUpdateForm extends Component {
           >
             Submit
           </button>
-          {!this.validateTitle(this.state.title) > 0 ? (
-            <span>{"  "}Title can't be empty</span>
-          ) : (
-            <span />
-          )}
+          {!this.validateTitle(this.state.title) ? (
+            <span style={{ color: "red" }}>
+              {" "}
+              <b>Title can't be empty</b>
+            </span>
+          ) : null}
         </form>
       </React.Fragment>
     );

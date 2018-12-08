@@ -8,6 +8,7 @@ class NewProject extends Component {
     super();
     this.state = { title: "" };
   }
+
   validateTitle(title) {
     let count = 0;
     for (let i = 0; i < title.length; i++) {
@@ -15,31 +16,29 @@ class NewProject extends Component {
     }
     return !!count;
   }
+
   render() {
     return (
-      <div>
+      <React.Fragment>
         <Navbar />
         <h1>Create A New Project!</h1>
         <form
           onSubmit={event => {
             event.preventDefault();
             this.props.addProject(this.state);
-            this.setState({ title: "" });
             this.props.history.push("/projects");
           }}
         >
-          <label>
-            Project Title:{" "}
-            <input
-              type="text"
-              name="projectTitle"
-              value={this.state.title}
-              onChange={event => {
-                event.preventDefault();
-                return this.setState({ title: event.target.value });
-              }}
-            />
-          </label>
+          Project Title:{" "}
+          <input
+            type="text"
+            name="projectTitle"
+            value={this.state.title}
+            onChange={event => {
+              event.preventDefault();
+              return this.setState({ title: event.target.value });
+            }}
+          />
           <button
             type="submit"
             disabled={!this.validateTitle(this.state.title)}
@@ -47,10 +46,13 @@ class NewProject extends Component {
             Submit
           </button>
           {!this.validateTitle(this.state.title) ? (
-            <span> Invalid Title </span>
+            <span style={{ color: "red" }}>
+              {" "}
+              <b>Title can't be empty</b>
+            </span>
           ) : null}
         </form>
-      </div>
+      </React.Fragment>
     );
   }
 }

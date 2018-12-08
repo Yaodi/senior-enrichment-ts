@@ -12,14 +12,12 @@ const Navbar = props => {
         </div>
         <div className="dir">
           <Link className="linkText" to="/robots">
-            {" "}
-            Robots{" "}
+            Robots
           </Link>
         </div>
         <div className="dir">
           <Link className="linkText" to="/projects">
-            {" "}
-            Projects{" "}
+            Projects
           </Link>
         </div>
         <div className="dir">

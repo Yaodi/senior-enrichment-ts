@@ -2,13 +2,13 @@ import React, { Component } from "react";
 import { addRobot } from "../redux/robots";
 import { connect } from "react-redux";
 import Navbar from "./Navbar";
-import { Redirect } from "react-router";
 
 class NewRobot extends Component {
   constructor() {
     super();
     this.state = { name: "" };
   }
+
   validateName(name) {
     let count = 0;
     for (let i = 0; i < name.length; i++) {
@@ -18,7 +18,7 @@ class NewRobot extends Component {
   }
   render() {
     return (
-      <div>
+      <React.Fragment>
         <Navbar />
         <h1>Create Your Robot!</h1>
         <form
@@ -45,10 +45,13 @@ class NewRobot extends Component {
             Submit
           </button>
           {!this.validateName(this.state.name) ? (
-            <span>Name can't be empty</span>
+            <span style={{ color: "red" }}>
+              {" "}
+              <b>Name can't be empty</b>
+            </span>
           ) : null}
         </form>
-      </div>
+      </React.Fragment>
     );
   }
 }

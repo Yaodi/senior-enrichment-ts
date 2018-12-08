@@ -1,7 +1,7 @@
 import React from "react";
 import Navbar from "./Navbar";
 
-const NotFoundPage = props => {
+const NotFoundPage = () => {
   return (
     <React.Fragment>
       <Navbar />

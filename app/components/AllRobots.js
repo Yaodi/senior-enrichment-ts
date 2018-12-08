@@ -6,7 +6,7 @@ import { fetchRobots, deleteRobot } from "../redux/robots";
 
 class AllRobots extends Component {
   componentDidMount() {
-    this.props.fetchRobots("name");
+    this.props.fetchRobots("createdAt");
   }
   render() {
     return this.props.loading ? (
@@ -23,7 +23,6 @@ class AllRobots extends Component {
                 this.props.fetchRobots(event.target.value);
               }}
             >
-              <option value="name">-----------------</option>
               <option value="createdAt">Created At</option>
               <option value="fuelLevel">Fuel Level</option>
             </select>
@@ -32,7 +31,7 @@ class AllRobots extends Component {
             <React.Fragment>
               <span className="robot">
                 <button
-                  type="salami"
+                  type="button"
                   onClick={() => {
                     this.props.deleteRobot(robot.id);
                   }}
@@ -51,10 +50,10 @@ class AllRobots extends Component {
         </div>
       </React.Fragment>
     ) : (
-      <div>
+      <React.Fragment>
         <Navbar />
         <h1> NO ROBOTS </h1>
-      </div>
+      </React.Fragment>
     );
   }
 }
@@ -74,7 +73,3 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(AllRobots);
-
-// Currently, we're just exporting the component as-is. When we're ready to
-// hook it up to the redux store, we'll export the connected component by default:
-// export default connect(mapState)(AllRobots)

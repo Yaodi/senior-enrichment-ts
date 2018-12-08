@@ -2,7 +2,7 @@ import Axios from "axios";
 
 const initialState = {
   projectsList: [],
-  currentProject: { robots: [], deadline: "" },
+  currentProject: { robots: [], deadline: "", title: "" },
   loading: true
 };
 

@@ -21,7 +21,11 @@ class RobotUpdateForm extends Component {
   }
 
   render() {
-    return (
+    return !this.state.name ? (
+      <React.Fragment>
+        <Navbar /> <h1>Invalid Hard Refresh</h1>
+      </React.Fragment>
+    ) : (
       <React.Fragment>
         <Navbar />
         <h2>Update Robot!</h2>

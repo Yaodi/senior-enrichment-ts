@@ -18,7 +18,10 @@ const Robot = db.define("robot", {
     defaultValue: 100,
     validate: { min: 0, max: 100 }
   },
-  imageUrl: { type: Sequelize.STRING, defaultValue: "/images/default.png" }
+  imageUrl: {
+    type: Sequelize.STRING,
+    defaultValue: `https://robohash.org/${Math.random()}`
+  }
 });
 
 module.exports = Robot;

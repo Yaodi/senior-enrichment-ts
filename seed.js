@@ -5,137 +5,99 @@ const { db, Project, Robot } = require("./server/db");
 const robots = [
   {
     name: "Cody",
-    imageUrl: "/images/cody.jpg",
+    imageUrl: `https://robohash.org/${Math.random()}`,
     fuelType: "diesel",
     fuelLevel: "44.5"
   },
   {
     name: "Ben",
-    imageUrl: "/images/ben.jpg",
+    imageUrl: `https://robohash.org/${Math.random()}`,
     Id: 3
   },
   {
     name: "Star",
-    imageUrl: "/images/star.jpg"
+    imageUrl: `https://robohash.org/${Math.random()}`
   },
   {
     name: "Batman",
-    imageUrl: "/images/batman.jpg"
+    imageUrl: `https://robohash.org/${Math.random()}`
   },
   {
     name: "Elliott",
-    imageUrl: "/images/elliott.jpg"
+    imageUrl: `https://robohash.org/${Math.random()}`
   },
   {
     name: "Fira",
-    imageUrl: "/images/fira.jpg"
+    imageUrl: `https://robohash.org/${Math.random()}`
   },
   {
     name: "Henry",
-    imageUrl: "/images/henry.jpg"
+    imageUrl: `https://robohash.org/${Math.random()}`
   },
   {
     name: "Marcy",
-    imageUrl: "/images/marcy.jpg"
+    imageUrl: `https://robohash.org/${Math.random()}`
   },
   {
     name: "Milton",
-    imageUrl: "/images/milton.jpg"
+    imageUrl: `https://robohash.org/${Math.random()}`
   },
   {
     name: "Murphy",
-    imageUrl: "/images/murphy.jpg"
+    imageUrl: `https://robohash.org/${Math.random()}`
   },
   {
     name: "Raffi",
-    imageUrl: "/images/raffi.jpg"
+    imageUrl: `https://robohash.org/${Math.random()}`
   },
   {
     name: "Tulsi",
-    imageUrl: "/images/tulsi.jpg"
+    imageUrl: `https://robohash.org/${Math.random()}`
   },
   {
     name: "Pork Chop",
-    imageUrl: "/images/pork_chop.jpg"
+    imageUrl: `https://robohash.org/${Math.random()}`
   },
   {
     name: "Ribs",
-    imageUrl: "/images/ribs.jpg"
+    imageUrl: `https://robohash.org/${Math.random()}`
   },
   {
     name: "Stacey",
-    imageUrl: "/images/stacey.jpg"
+    imageUrl: `https://robohash.org/${Math.random()}`
   },
   {
     name: "JD",
-    imageUrl: "/images/jd.jpg"
+    imageUrl: `https://robohash.org/${Math.random()}`
   },
   {
     name: "BenBen",
-    imageUrl: "/images/benben.png"
+    imageUrl: `https://robohash.org/${Math.random()}`
   },
   {
     name: "Odie",
-    imageUrl: "/images/odie.jpg"
-  },
-  { name: "Definitely Not Odie" }
+    imageUrl: `https://robohash.org/${Math.random()}`
+  }
 ];
 
 const projects = [
   {
-    title: " Cody",
-    robotId: 1
+    title: "Mission Impossible"
   },
   {
-    title: " Ben"
+    title: "Mission Impossible 2"
   },
   {
-    title: " Star"
+    title: "Mission Impoossible 3"
   },
   {
-    title: " Batman"
+    title: "Mission Impossible: Ghost Protocol"
   },
   {
-    title: " Elliott"
+    title: "Mission Impossible: Rogue Nation"
   },
   {
-    title: " Fira"
-  },
-  {
-    title: " Henry"
-  },
-  {
-    title: " Marcy"
-  },
-  {
-    title: " Milton"
-  },
-  {
-    title: " Murphy"
-  },
-  {
-    title: " Raffi"
-  },
-  {
-    title: " Tulsi"
-  },
-  {
-    title: " Pork Chop"
-  },
-  {
-    title: " Ribs"
-  },
-  {
-    title: " Stacey"
-  },
-  {
-    title: " JD"
-  },
-  {
-    title: " BenBen"
-  },
-  {
-    title: " Odie"
+    title: "Mission Impossible: Fallout"
   }
 ];
 const seed = async () => {

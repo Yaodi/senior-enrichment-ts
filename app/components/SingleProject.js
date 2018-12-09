@@ -54,7 +54,7 @@ class SingleProject extends Component {
               })
             }
           >
-            complete
+            Complete
           </button>
         ) : (
           <h3>Complete!</h3>

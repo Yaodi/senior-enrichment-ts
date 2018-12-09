@@ -3,7 +3,6 @@ const { Project } = require("../db/index");
 
 router.get("/all/:sortBy", async (req, res, next) => {
   try {
-    console.log(req.params.sortBy);
     const projects = await Project.findAll({
       include: { all: true },
       order: [[req.params.sortBy, "DESC"]]
@@ -35,7 +34,6 @@ router.post("/", async (req, res, next) => {
 router.delete("/:id", async (req, res, next) => {
   try {
     await Project.destroy({ where: { id: req.params.id } });
-
     const projects = await Project.findAll({
       include: { all: true },
       order: [["createdAt", "DESC"]]

@@ -49,15 +49,17 @@ export const deleteProject = id => {
   };
 };
 export const updateProject = (id, fieldToUpdate) => {
-  return async function() {
-    await Axios.put(`/api/projects/${id}`, fieldToUpdate);
+  return async function(dispatch) {
+    let { data } = await Axios.put(`/api/projects/${id}`, fieldToUpdate);
+    dispatch(gotProjectFromServer(data));
   };
 };
 export const updateRelation = (projectId, robotId) => {
   return async function(dispatch) {
-    const { data } = await Axios.put("/api/relationz", {
+    const { data } = await Axios.put("/api/relations", {
       projectId,
-      robotId
+      robotId,
+      type: "Project"
     });
     dispatch(gotProjectFromServer(data));
   };

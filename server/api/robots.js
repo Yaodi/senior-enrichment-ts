@@ -50,7 +50,6 @@ router.post("/", async (req, res, next) => {
 router.delete("/:id", async (req, res, next) => {
   try {
     await Robot.destroy({ where: { id: req.params.id } });
-
     const robots = await Robot.findAll({
       include: { all: true },
       order: [["createdAt", "DESC"]]

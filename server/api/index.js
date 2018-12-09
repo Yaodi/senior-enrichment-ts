@@ -1,52 +1,23 @@
 "use strict";
-const path = require("path");
 const router = require("express").Router();
-const { db, Project, Robot } = require("../db/index");
+const { Project, Robot } = require("../db/index");
 
-// Your routes go here!
-// NOTE: Any routes that you put here are ALREADY mounted on `/api`
-// You can put all routes in this file HOWEVER,
-// this file should almost be like a table of contents for the routers you create!
-// For example:
-//
-// For your `/api/puppies` routes:
-// router.use('/puppies', require('./puppies'))
-//
-// And for your `/api/kittens` routes:
-// router.use('/kittens', require('./kittens'))
-
-// If someone makes a request that starts with `/api`,
-// but you DON'T have a corresponding router, this piece of
-// middleware will generate a 404, and send it to your
-// error-handling endware!
 router.use("/robots", require("./robots"));
 router.use("/projects", require("./projects"));
 
-router.put("/relationz", async (req, res, next) => {
-  try {
-    const robotInstance = await Robot.findById(req.body.robotId);
-    const projectInstance = await Project.findById(req.body.projectId, {
-      include: { all: true }
-    });
-    await robotInstance.removeProject(projectInstance);
-    const updatedInstance = await Project.findById(req.body.projectId, {
-      include: { all: true }
-    });
-    res.json(updatedInstance);
-  } catch (err) {
-    next(err);
-  }
-});
 router.put("/relations", async (req, res, next) => {
   try {
-    const robotInstance = await Robot.findById(req.body.robotId, {
-      include: { all: true }
-    });
-    const projectInstance = await Project.findById(req.body.projectId);
+    let robotInstance = await Robot.findById(req.body.robotId);
+    let projectInstance = await Project.findById(req.body.projectId);
     await robotInstance.removeProject(projectInstance);
-    const updatedInstance = await Robot.findById(req.body.robotId, {
-      include: { all: true }
-    });
+    let updatedInstance;
+    req.body.type === "Project"
+      ? (updatedInstance = await Project.findById(req.body.projectId, {
+          include: { all: true }
+        }))
+      : (updatedInstance = await Robot.findById(req.body.robotId, {
+          include: { all: true }
+        }));
     res.json(updatedInstance);
   } catch (err) {
     next(err);

@@ -54,12 +54,12 @@ export const updateRelation = (robotId, projectId) => {
   return async function(dispatch) {
     const { data } = await Axios.put("/api/relations", {
       robotId,
-      projectId
+      projectId,
+      type: "Robot"
     });
     dispatch(gotRobotFromServer(data));
   };
 };
-
 export const updateRobot = (id, fieldToUpdate) => {
   return async function() {
     await Axios.put(`/api/robots/${id}`, fieldToUpdate);

@@ -55,7 +55,6 @@ class AllProjects extends Component {
             );
           })}
         </div>
-        )
       </div>
     ) : (
       <div>

@@ -42,7 +42,12 @@ class SingleRobot extends Component {
         {this.props.robot.projects.length ? (
           this.props.robot.projects.map(project => (
             <li>
-              <Link to={`/projects/${project.id}`}>{project.title}</Link>
+              <Link
+                style={{ textDecorationLine: "none", color: "black" }}
+                to={`/projects/${project.id}`}
+              >
+                {project.title}
+              </Link>
               {"  "}
               <button
                 onClick={() => {

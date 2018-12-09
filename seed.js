@@ -76,28 +76,35 @@ const robots = [
   },
   {
     name: "Odie",
-    imageUrl: `https://robohash.org/${Math.random()}`
+    imageUrl: `https://robohash.org/${Math.random()}`,
+    fuelLevel: 1
   }
 ];
 
 const projects = [
   {
-    title: "Mission Impossible"
+    title: "Mission Impossible",
+    priority: 1
   },
   {
-    title: "Mission Impossible 2"
+    title: "Mission Impossible 2",
+    priority: 3
   },
   {
-    title: "Mission Impoossible 3"
+    title: "Mission Impoossible 3",
+    priority: 5
   },
   {
-    title: "Mission Impossible: Ghost Protocol"
+    title: "Mission Impossible: Ghost Protocol",
+    priority: 7
   },
   {
-    title: "Mission Impossible: Rogue Nation"
+    title: "Mission Impossible: Rogue Nation",
+    priority: 9
   },
   {
-    title: "Mission Impossible: Fallout"
+    title: "Mission Impossible: Fallout",
+    priority: 10
   }
 ];
 const seed = async () => {

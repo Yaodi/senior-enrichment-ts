@@ -12,6 +12,7 @@ class RobotUpdateForm extends Component {
       fuelLevel: props.robot.fuelLevel
     };
   }
+
   validateName(name) {
     let count = 0;
     for (let i = 0; i < name.length; i++) {
@@ -21,11 +22,7 @@ class RobotUpdateForm extends Component {
   }
 
   render() {
-    return !this.state.name ? (
-      <React.Fragment>
-        <Navbar /> <h1>Invalid Hard Refresh</h1>
-      </React.Fragment>
-    ) : (
+    return (
       <React.Fragment>
         <Navbar />
         <h2>Update Robot!</h2>
@@ -78,7 +75,9 @@ class RobotUpdateForm extends Component {
             Submit
           </button>
           {!this.validateName(this.state.name) ? (
-            <span>Name can't be empty</span>
+            <span style={{ color: "red" }}>
+              <b>Name can't be empty</b>
+            </span>
           ) : null}{" "}
         </form>
       </React.Fragment>

@@ -27,12 +27,7 @@ class ProjectUpdateForm extends Component {
   }
 
   render() {
-    return !this.state.title ? (
-      <React.Fragment>
-        <Navbar />
-        <h1>Invalid Hard Refresh </h1>
-      </React.Fragment>
-    ) : (
+    return (
       <React.Fragment>
         <Navbar />
         <h2>Update Project!</h2>

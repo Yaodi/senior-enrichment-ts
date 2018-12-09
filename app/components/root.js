@@ -10,14 +10,10 @@ import SingleProject from "./SingleProject";
 import NewProject from "./NewProject";
 import NewRobot from "./NewRobot";
 import RobotUpdateForm from "./RobotUpdateForm";
-import Updated from "./Updated";
 import ProjectUpdateForm from "./ProjectUpdateForm";
 import NotFoundPage from "./NotFoundPage";
 
 export default class Root extends React.Component {
-  componentDidMount() {
-    // Huh, I wonder what this mysterious componentDidMount is doing here... 🤔
-  }
   render() {
     return (
       <Provider store={store}>
@@ -40,7 +36,6 @@ export default class Root extends React.Component {
                 path="/robots/:robotId/update"
                 component={RobotUpdateForm}
               />
-              <Route exact path="/updated" component={Updated} />
               <Route
                 exact
                 path="/projects/:projectId/update"

@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { db, Project, Robot } = require("../db/index");
+const { Project } = require("../db/index");
 
 router.get("/all/:sortBy", async (req, res, next) => {
   try {
@@ -48,16 +48,9 @@ router.delete("/:id", async (req, res, next) => {
 
 router.put("/:id", async (req, res, next) => {
   try {
-    console.log(req.params);
-    const [numberOfAffectedRows, affectedRows] = await Project.update(
-      req.body,
-      {
-        // include: { all: true },
-        where: { id: req.params.id },
-        // RETURNING TRUE GIVES US OUR UPDATED ROW BACK
-        returning: true
-      }
-    );
+    await Project.update(req.body, {
+      where: { id: req.params.id }
+    });
     const updatedInstance = await Project.findById(req.params.id, {
       include: { all: true }
     });

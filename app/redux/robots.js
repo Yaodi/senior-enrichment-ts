@@ -2,15 +2,18 @@ import Axios from "axios";
 
 const initialState = {
   robotsList: [],
-  currentRobot: { fuelType: " ", projects: [], name: "", fuelLevel: 0 },
+  currentRobot: {
+    fuelType: "",
+    projects: [],
+    name: "",
+    fuelLevel: 0
+  },
   loading: true
 };
 
 // ACTION TYPES
 const GOT_ROBOTS_FROM_SERVER = "GOT_ROBOTS_FROM_SERVER";
 const GOT_ROBOT_FROM_SERVER = "GOT_ROBOT_FROM_SERVER";
-const GOT_NEW_ROBOT_FROM_SERVER = "GOT_NEW_ROBOT_FROM_SERVER";
-const GOT_UPDATED_ROBOT_FROM_SERVER = "GOT_UPDATED_ROBOT_FROM_SERVER";
 
 // ACTION CREATORS
 const gotRobotsFromServer = data => ({
@@ -20,16 +23,6 @@ const gotRobotsFromServer = data => ({
 
 const gotRobotFromServer = data => ({
   type: GOT_ROBOT_FROM_SERVER,
-  data
-});
-
-const addedNewRobot = data => ({
-  type: GOT_NEW_ROBOT_FROM_SERVER,
-  data
-});
-
-const updatedRobot = data => ({
-  type: GOT_UPDATED_ROBOT_FROM_SERVER,
   data
 });
 
@@ -47,9 +40,8 @@ export const fetchRobot = id => {
   };
 };
 export const addRobot = newRobotObj => {
-  return async function(dispatch) {
-    const { data } = await Axios.post("/api/robots", newRobotObj);
-    dispatch(addedNewRobot(data));
+  return async function() {
+    await Axios.post("/api/robots", newRobotObj);
   };
 };
 export const deleteRobot = id => {
@@ -69,9 +61,8 @@ export const updateRelation = (robotId, projectId) => {
 };
 
 export const updateRobot = (id, fieldToUpdate) => {
-  return async function(dispatch) {
-    const { data } = await Axios.put(`/api/robots/${id}`, fieldToUpdate);
-    dispatch(updatedRobot(data));
+  return async function() {
+    await Axios.put(`/api/robots/${id}`, fieldToUpdate);
   };
 };
 
@@ -82,20 +73,7 @@ export const robotsReducer = (state = initialState, action) => {
     case GOT_ROBOTS_FROM_SERVER:
       return { ...state, robotsList: action.data, loading: false };
     case GOT_ROBOT_FROM_SERVER:
-      console.log("REDUCER>>>>>", action.data);
       return { ...state, currentRobot: action.data };
-    case GOT_NEW_ROBOT_FROM_SERVER:
-      return { ...state, robotsList: [...state.robotsList, action.data] };
-    case GOT_UPDATED_ROBOT_FROM_SERVER:
-      return {
-        ...state,
-        robotsList: [
-          ...state.robotsList.map(obj => {
-            if (obj.id === action.data.id) return action.data;
-            return obj;
-          })
-        ]
-      };
     default:
       return state;
   }

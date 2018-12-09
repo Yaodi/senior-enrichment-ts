@@ -45,73 +45,66 @@ class SingleProject extends Component {
         {this.props.project.description}
         <h3>Priority Level: {this.props.project.priority}</h3>
 
-        {/* conditionally show a completed button which updates competed status in database */}
         {!this.props.project.completed ? (
-          <form
-            onSubmit={event => {
-              event.preventDefault();
-
+          <button
+            type="button"
+            onClick={() =>
               this.props.updateProject(this.props.project.id, {
                 completed: true
-              });
-              // this.props.history.push("/updated");
-            }}
+              })
+            }
           >
-            <button type="submit">complete</button>
-          </form>
+            complete
+          </button>
         ) : (
-          <h3>Already Complete!</h3>
+          <h3>Complete!</h3>
         )}
 
         <h3>Robots Assigned:</h3>
-        <ul>
-          {!this.props.project.robots.length ? (
-            <h1>No robots assigned to this project, yikes!</h1>
-          ) : this.state.show ? (
-            <React.Fragment>
-              <button
-                onClick={() => {
-                  this.setState({ show: !this.state.show });
-                }}
-              >
-                Collapse
-              </button>
-              <span className="allRobots">
-                {this.props.project.robots.map(robot => (
-                  <span className="robot">
-                    <Link className="linkText" to={`/robots/${robot.id}`}>
-                      {robot.name}
-                      <br />
-                      <img src={robot.imageUrl} />
-                    </Link>
-                    <button
-                      type="button"
-                      onClick={event => {
-                        event.preventDefault();
-                        this.props.updateRelation(
-                          this.props.project.id,
-                          robot.id
-                        );
-                        // this.props.history.push("/updated");
-                      }}
-                    >
-                      {" "}
-                      Remove
-                    </button>
-                  </span>
-                ))}
-              </span>
-            </React.Fragment>
-          ) : (
+
+        {!this.props.project.robots.length ? (
+          <h1>No robots assigned to this project, yikes!</h1>
+        ) : this.state.show ? (
+          <React.Fragment>
             <button
               onClick={() => {
                 this.setState({ show: !this.state.show });
               }}
             >
-              Expand
+              Collapse
             </button>
-          )}
-        </ul>
+            <span className="allRobots">
+              {this.props.project.robots.map(robot => (
+                <span className="robot">
+                  <Link className="linkText" to={`/robots/${robot.id}`}>
+                    {robot.name}
+                    <br />
+                    <img src={robot.imageUrl} />
+                  </Link>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      this.props.updateRelation(
+                        this.props.project.id,
+                        robot.id
+                      );
+                    }}
+                  >
+                    Remove
+                  </button>
+                </span>
+              ))}
+            </span>
+          </React.Fragment>
+        ) : (
+          <button
+            onClick={() => {
+              this.setState({ show: !this.state.show });
+            }}
+          >
+            Expand
+          </button>
+        )}
       </React.Fragment>
     );
   }
